@@ -1,0 +1,63 @@
+<div class="dialog-content">
+    <div class="top-container">
+        <div class="title-container">
+            <h2>Share Your Culinary Masterpiece!</h2>
+        </div>
+        <div class="close-icon-container" (click)="closeDialog()">
+            <mat-icon class="close-icon">close</mat-icon>
+        </div>
+    </div>
+    <div class="line"></div>
+    <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="custom-form-field">
+            <input matInput placeholder="Title of your recipe" [(ngModel)]="recipeTitle" name="recipeTitle" (input)="checkCompletion()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="custom-form-field">
+            <textarea matInput placeholder="Ingredients" [(ngModel)]="ingredients" name="ingredients" (input)="checkCompletion()"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="custom-form-field">
+            <textarea matInput placeholder="Steps" [(ngModel)]="steps" name="steps" (input)="checkCompletion()"></textarea>
+        </mat-form-field>
+
+        <div class="time-servings">
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <input matInput type="number" placeholder="Cooking Time" [(ngModel)]="cookingTime" name="cookingTime" (input)="checkCompletion()">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="custom-form-field">
+                <input matInput type="number" placeholder="Servings" [(ngModel)]="servings" name="servings" (input)="checkCompletion()">
+            </mat-form-field>
+        </div>
+
+        <div class="image-attach">
+            <label for="fileInput">
+                <mat-icon>add_to_photos</mat-icon>
+            </label>
+            <input type="file" accept=".jpg, .jpeg, .png" id="fileInput" style="display: none" (change)="onFileSelected($event)">
+            <div class="image-container" *ngFor="let image of imageArray; let i = index">
+                <span>{{ image.name }}</span>
+                <button mat-icon-button (click)="removeImage(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="video-attach">
+            <label for="videoInput">
+                <mat-icon>video_library</mat-icon>
+            </label>
+            <input type="file" id="videoInput" style="display: none" accept="video/*" multiple
+                (change)="onVideoSelected($event)">
+            <div class="video-container" *ngFor="let video of videoArray; let i = index">
+                <span>{{ video.name }}</span>
+                <button mat-icon-button (click)="removeVideo(i)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="button-wrapper">
+            <button id="submitButton" type="submit" [disabled]="isButtonDisabled" (click)="onSubmit()"
+                [ngClass]="{ 'disabled': isButtonDisabled }">Post</button>
+        </div>
+    </form>
+</div>
