@@ -14,6 +14,7 @@ export class UserProfileComponent {
   following: string = '';
   followersNumber: number = 0;
   followingNumber: number = 0;
+  userId: string = '5';
 
   constructor(private userService: UserServiceComponent) {}
 

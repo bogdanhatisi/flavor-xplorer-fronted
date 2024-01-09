@@ -5,11 +5,17 @@
       src="https://via.placeholder.com/100"
       alt="User Avatar"
     />
-    <h3>{{ user.first_name }}</h3>
-    <h2>{{ user.last_name }}</h2>
-    <p>Gender: {{ user.gender }}</p>
-    <p>Followers: {{ followersNumber }}</p>
-    <p>Following: {{ followingNumber }}</p>
+    <div *ngIf="userId !== '5'" class="buttons">
+      <button class="follow-btn">Follow</button>
+      <button class="unfollow-btn">Unfollow</button>
+    </div>
+    <div class="user-details">
+      <h3>{{ user.first_name }}</h3>
+      <h2>{{ user.last_name }}</h2>
+      <p>Gender: {{ user.gender }}</p>
+      <p>Followers: {{ followersNumber }}</p>
+      <p>Following: {{ followingNumber }}</p>
+    </div>
   </div>
 
   <div class="post-grid">
