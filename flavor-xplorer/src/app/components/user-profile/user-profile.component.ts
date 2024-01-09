@@ -14,14 +14,15 @@ export class UserProfileComponent {
   following: string = '';
   followersNumber: number = 0;
   followingNumber: number = 0;
-  userId: string = '5';
+  userId: string = '4';
+  currentUserId = 7;
 
   constructor(private userService: UserServiceComponent) {}
 
   ngOnInit(): void {
     // Fetch the user data
     this.userService
-      .findOne(5) // Replace '1' with the actual user ID
+      .findOne(this.currentUserId) // Replace '1' with the actual user ID
       .then((user) => {
         this.user = user;
         console.log('User Profile Data:', this.user);
@@ -31,7 +32,7 @@ export class UserProfileComponent {
       });
 
     this.userService
-      .getFollowers(5) // Replace '1' with the actual user ID
+      .getFollowers(this.currentUserId) // Replace '1' with the actual user ID
       .then((followers) => {
         this.followers = followers;
         this.followersNumber = followers.length;
@@ -42,7 +43,7 @@ export class UserProfileComponent {
       });
 
     this.userService
-      .getFollowing(5) // Replace '1' with the actual user ID
+      .getFollowing(this.currentUserId) // Replace '1' with the actual user ID
       .then((following) => {
         this.following = following;
         this.followingNumber = following.length;
@@ -50,6 +51,18 @@ export class UserProfileComponent {
       })
       .catch((error) => {
         console.error('Error fetching user profile:', error);
+      });
+  }
+
+  onFollowClick() {
+    console.log('Merge followingu');
+    this.userService
+      .followUser(5)
+      .then((message) => {
+        console.log('User now follows:', message);
+      })
+      .catch((error) => {
+        console.error('Error following:', error);
       });
   }
 }

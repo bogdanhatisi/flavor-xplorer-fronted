@@ -16,7 +16,7 @@ export class UserServiceComponent {
     this.jwtToken = token;
   }
 
-  findOne(id: number): Promise<User> {
+  async findOne(id: number): Promise<User> {
     // Ensure the jwtToken is set before making the request
     if (!this.jwtToken) {
       console.error(
@@ -38,7 +38,7 @@ export class UserServiceComponent {
       .catch((error) => Promise.reject(error));
   }
 
-  getFollowers(id: number): Promise<string> {
+  async getFollowers(id: number): Promise<string> {
     // Ensure the jwtToken is set before making the request
     if (!this.jwtToken) {
       console.error(
@@ -60,7 +60,7 @@ export class UserServiceComponent {
       .catch((error) => Promise.reject(error));
   }
 
-  getFollowing(id: number): Promise<string> {
+  async getFollowing(id: number): Promise<string> {
     // Ensure the jwtToken is set before making the request
     if (!this.jwtToken) {
       console.error(
@@ -78,6 +78,33 @@ export class UserServiceComponent {
 
     return axios
       .get<string>(`${this.baseUrl}/users/${id}/following`, config)
+      .then((response: AxiosResponse<string>) => response.data)
+      .catch((error) => Promise.reject(error));
+  }
+
+  async followUser(followId: number): Promise<string> {
+    if (!this.jwtToken) {
+      console.error(
+        'JWT token not set. Please set the token before making requests.'
+      );
+      return Promise.reject('JWT token not set.');
+    }
+
+    const config: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${this.jwtToken}`,
+        'Content-Type': 'application/json',
+      },
+    };
+
+    return axios
+      .post<string>(
+        `${this.baseUrl}/relationships/follow`,
+        {
+          followed_id: followId,
+        },
+        config
+      )
       .then((response: AxiosResponse<string>) => response.data)
       .catch((error) => Promise.reject(error));
   }

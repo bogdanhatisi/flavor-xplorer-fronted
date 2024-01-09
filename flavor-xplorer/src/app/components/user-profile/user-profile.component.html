@@ -6,7 +6,7 @@
       alt="User Avatar"
     />
     <div *ngIf="userId !== '5'" class="buttons">
-      <button class="follow-btn">Follow</button>
+      <button (click)="onFollowClick()" class="follow-btn">Follow</button>
       <button class="unfollow-btn">Unfollow</button>
     </div>
     <div class="user-details">
