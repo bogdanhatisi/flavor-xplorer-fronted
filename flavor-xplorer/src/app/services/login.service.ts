@@ -33,10 +33,7 @@ export class LoginService {
         .pipe(
             take(1),
             tap((response : {token : string}) => {
-                Storage.set({
-                    key: 'token',
-                    value: response.token,
-                });
+                localStorage.setItem("token", response.token)
                 const decodedToken : UserResponse = jwtDecode.jwtDecode(response.token);
                 this.user$.next(decodedToken.user);
             })
