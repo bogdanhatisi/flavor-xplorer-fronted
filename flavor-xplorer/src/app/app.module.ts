@@ -7,16 +7,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserServiceComponent } from './services/user-service/user-service.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserProfileComponent,
-    UserServiceComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, UserProfileComponent, UserServiceComponent],
+  imports: [BrowserModule, AppRoutingModule],
+  providers: [UserServiceComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
