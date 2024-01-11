@@ -1,0 +1,31 @@
+<!-- post.component.html -->
+
+<div class="post" *ngIf="post">
+  <h2>{{ post.title }}</h2>
+  <p>Ingredients: {{ post.ingredients }}</p>
+  <p>Instructions: {{ post.instructions }}</p>
+  <p>Cooking Time: {{ post.cooking_time }} minutes</p>
+  <p>Servings: {{ post.servings }}</p>
+
+  <p>Created At: {{ post.created_at | date:'medium' }}</p>
+  <p>Last Updated At: {{ post.updated_at | date:'medium' }}</p>
+
+  <div *ngIf="post.rating_mean || post.rating_count">
+    <p>Rating: {{ post.rating_mean }} ({{ post.rating_count }} votes)</p>
+  </div>
+
+  <div *ngIf="post.images.length > 0">
+    <h3>Images:</h3>
+    <div *ngFor="let image of post.images">
+      <img [src]="image" alt="Post Image" />
+    </div>
+  </div>
+
+  <div *ngIf="post.videos.length > 0">
+    <h3>Videos:</h3>
+    <div *ngFor="let video of post.videos">
+      <!-- Embed your video player here, e.g., using an iframe -->
+      <iframe [src]="video" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
