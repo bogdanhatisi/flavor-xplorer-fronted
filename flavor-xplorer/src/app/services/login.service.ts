@@ -21,7 +21,7 @@ export class LoginService {
       };
 
     register(newUser : user) : Observable<user> {
-        //console.log(user)
+        
         const user = {
             user : newUser
         }
@@ -29,17 +29,16 @@ export class LoginService {
     }
 
     login(identifier : string, password : string) : Observable<{token : string}> {
-        return this.http.post<{token : string}>(
+        return this.http.post<UserResponse>(
             this.url + '/login',
             {identifier, password},
             this.httpOptions
         )
         .pipe(
             take(1),
-            tap((response : {token : string}) => {
+            tap((response : UserResponse) => {
                 localStorage.setItem("token", response.token)
-                const decodedToken : UserResponse = jwtDecode.jwtDecode(response.token);
-                this.user$.next(decodedToken.user);
+                localStorage.setItem("user_id", response.user_id.toString())
             })
         );
     }

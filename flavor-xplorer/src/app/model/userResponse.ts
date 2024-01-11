@@ -2,7 +2,9 @@ import { user } from "./user";
 
 
 export interface UserResponse {
-  user: user;
-  exp: number;
-  iat: number;
+  message: string;
+  role : string;
+  token: string;
+  user_id : number;
+  username : string;
 }
