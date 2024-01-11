@@ -4,29 +4,28 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-
-  constructor(private router : Router) {}
+  constructor(private router: Router) {}
 
   onHome() {
-    this.router.navigateByUrl("home")
+    this.router.navigateByUrl('home');
   }
 
   onProfile() {
     // send the id to the account
-    // let id = localStorage.getItem("userId")
-    // this.router.navigateByUrl("/profile/" + id)
+    // let id = localStorage.getItem('userId');
+    this.router.navigateByUrl('profile');
   }
 
   onExplore() {
     // navigate to explore page
   }
 
-  onSubmitSearch(event : any) {
+  onSubmitSearch(event: any) {
     const inputValue = event.target.value;
 
-    console.log("Ai scris: " + inputValue + "! Bravo prostule!")
+    console.log('Ai scris: ' + inputValue + '! Bravo prostule!');
   }
 }

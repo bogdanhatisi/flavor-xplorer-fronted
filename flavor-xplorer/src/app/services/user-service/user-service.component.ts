@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { User } from 'src/app/models/user.interface';
 import { environment } from 'src/app/environments';
 import { Observable, map } from 'rxjs';
-@Component({
-  selector: 'app-user-service',
-  templateUrl: './user-service.component.html',
-  styleUrls: ['./user-service.component.css'],
+@Injectable({
+  providedIn: 'root',
 })
 export class UserServiceComponent {
   baseUrl = environment.baseUrl;

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserServiceComponent } from './services/user-service/user-service.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -16,19 +16,11 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     HomePageComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-  declarations: [AppComponent, UserProfileComponent, UserServiceComponent],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [UserServiceComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   bootstrap: [AppComponent],
+  providers: [UserServiceComponent],
 })
 export class AppModule {}

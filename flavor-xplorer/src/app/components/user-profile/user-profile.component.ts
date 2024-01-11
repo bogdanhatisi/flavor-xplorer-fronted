@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
-
+import { NavbarComponent } from 'src/app/navbar/navbar.component';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,7 +15,7 @@ export class UserProfileComponent {
   followersNumber: number = 0;
   followingNumber: number = 0;
   userId: string = '4';
-  currentUserId = 7;
+  currentUserId = parseInt(localStorage.getItem('user_id')!);
 
   constructor(private userService: UserServiceComponent) {}
 
