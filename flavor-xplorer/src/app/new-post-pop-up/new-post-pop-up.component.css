@@ -1,0 +1,156 @@
+/* CSS for NewPostPopUpComponent */
+
+/* Dialog Content */
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    color: #2ec4b6;
+    position: relative;
+    width: 40vw;
+    height: 75vh;
+    overflow: auto;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+/* Dialog title and close button */
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-content h2 {
+    font-family: Arial, sans-serif;
+    color: #ff9f1c;
+    margin-bottom: 20px;
+}
+
+.close-icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #CBF3F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.close-icon-container:hover {
+    background-color: #2EC4B6;
+}
+
+.close-icon {
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Delimiter */
+.line {
+    border-bottom: 2px solid black;
+    width: 100%;
+    border-color: #2EC4B6;
+    margin-bottom: 10px;
+}
+
+/* Form */
+
+::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+    padding: 0.4em 0px !important;
+}
+
+::ng-deep .mat-form-field-label-wrapper {
+    top: -1.5em;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    /* Change the outline color to red */
+    stroke: red;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100vh;
+    margin-bottom: 20px;
+}
+
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+
+.custom-form-field {
+    width: 100%;
+    background-color: #fff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: small;
+    height: auto;
+}
+
+.time-servings {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.attachment-container {
+    display: flex;
+    justify-content: center;
+}
+
+.image-attach {
+    margin-right: 5px;
+}
+
+.image-container,
+.video-container {
+    width: 100%;
+    max-height: 25px;
+}
+
+.icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.submit-form-button {
+    margin-top: 10px;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #CBF3F0;
+    transition: background-color 0.3s ease;
+    border: none;
+    color: white;
+}
+
+.submit-form-button:not([disabled]):hover {
+    background-color: #2EC4B6;
+}
+
+.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
