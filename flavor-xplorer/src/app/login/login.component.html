@@ -1,0 +1,95 @@
+<div class="title-container">
+    <span style="color: primary; font-size: 36px; font-weight: 700;">Flavor-Xplorer</span>
+    <img src="assets/icon.jpg" alt="">
+</div>
+<div class="subtitle-container">Ne place sa mancam!</div>
+
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="field">
+        <label for="firstName">Username</label>
+        <input #usernameInput="ngModel" ngModel type="text" name="username" required class="form-control">
+        <span class="error" *ngIf="!usernameInput.valid && usernameInput.touched">
+            Please enter your username.
+        </span>
+    </div>
+    
+    
+    
+    <div *ngIf="submissionType === 'join'">
+        <div class="field">
+            <label class="input-label" for="email">Email</label>
+            <input #emailInput="ngModel" ngModel type="email" name="email" required class="form-control">
+            <span class="error" *ngIf="!emailInput.valid && emailInput.touched">
+                Please enter your email address.
+            </span>
+        </div>
+    </div>
+    
+    <div *ngIf="submissionType === 'join'">
+        <div class="field">
+            <label class="input-label" for="firstName">First Name</label>
+            <input #firstNameInput="ngModel" ngModel type="text" name="first_name" required class="form-control">
+            <span class="error" *ngIf="!firstNameInput.valid && firstNameInput.touched">
+                Please enter your first name.
+            </span>
+        </div>
+    </div>
+    
+    <div *ngIf="submissionType === 'join'">
+        <div class="field">
+            <label class="input-label" for="lastName">Last Name</label>
+            <input #lastNameInput="ngModel" ngModel type="text" name="last_name" required class="form-control">
+            <span class="error" *ngIf="!lastNameInput.valid && lastNameInput.touched">
+                Please enter your last name.
+            </span>
+        </div>
+    </div>
+    
+    <div *ngIf="submissionType === 'join'">
+        <div class="field">
+            <label class="input-label" for="gender">Gender (male/female/other) </label>
+            <input #genderInput="ngModel" ngModel type="text" name="gender" required class="form-control">
+            <span class="error" *ngIf="!genderInput.valid && genderInput.touched">
+                Please enter your gender.
+            </span>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label for="password">Password</label>
+        <input #passwordInput="ngModel" ngModel type="password" name="password" required class="form-control">
+        <span class="error" *ngIf="!passwordInput.valid && passwordInput.touched">
+            Please enter a valid password (must contain an uppercase letter, special character and number).
+        </span>
+    </div>
+    
+    <div *ngIf="submissionType === 'join'">
+        <div class="field">
+            <label for="password">Confirm Password</label>
+            <input #passwordConfirmInput="ngModel" ngModel type="password" name="password_confirmation" required class="form-control">
+            <span class="error" *ngIf="(!passwordConfirmInput.valid && passwordConfirmInput.touched) || (passwordInput.value !== passwordConfirmInput.value)">
+                Passwords don't match
+            </span>
+        </div>
+    </div>
+
+    <p *ngIf="submissionType === 'join'" class="terms-and-conditions">
+        By clicking Agree, you agree to the Flavor-Xplorer
+        <span style="color: primary;">User Agreement</span>,
+        <span style="color: primary;">Privacy Policy</span>, and
+        <span style="color: primary;">Cookie Policy</span>.
+    </p>
+
+    <button [disabled]="!form.valid" type="submit">
+        {{ submissionType === 'login' ? 'Sign in' : 'Agree' }}
+    </button>
+</form>
+
+<div class="toggle-text">
+    <a (click)="toggleText()">
+        <span class="toggle-auth-mode" style="color: primary;">
+            {{ submissionType === 'login' ? 'New to Flavor-Xplorer? Join now' : 'Already on Flavor-Xplorer? Sign in' }}
+        </span>
+    </a>
+    
+</div>
