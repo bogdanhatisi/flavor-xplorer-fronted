@@ -57,7 +57,19 @@ export class UserProfileComponent {
   onFollowClick() {
     console.log('Merge followingu');
     this.userService
-      .followUser(5)
+      .followOrUnfollowUser(5, 'follow')
+      .then((message) => {
+        console.log('User now follows:', message);
+      })
+      .catch((error) => {
+        console.error('Error following:', error);
+      });
+  }
+
+  onUnFollowClick() {
+    console.log('Merge unfollowingu');
+    this.userService
+      .followOrUnfollowUser(5, 'unfollow')
       .then((message) => {
         console.log('User now follows:', message);
       })

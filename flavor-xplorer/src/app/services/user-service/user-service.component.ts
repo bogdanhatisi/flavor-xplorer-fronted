@@ -82,7 +82,7 @@ export class UserServiceComponent {
       .catch((error) => Promise.reject(error));
   }
 
-  async followUser(followId: number): Promise<string> {
+  async followOrUnfollowUser(followId: number, type: string): Promise<string> {
     if (!this.jwtToken) {
       console.error(
         'JWT token not set. Please set the token before making requests.'
@@ -99,7 +99,7 @@ export class UserServiceComponent {
 
     return axios
       .post<string>(
-        `${this.baseUrl}/relationships/follow`,
+        `${this.baseUrl}/relationships/${type}`,
         {
           followed_id: followId,
         },

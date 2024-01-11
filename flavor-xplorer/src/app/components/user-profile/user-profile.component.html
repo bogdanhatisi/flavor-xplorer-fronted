@@ -7,7 +7,7 @@
     />
     <div *ngIf="userId !== '5'" class="buttons">
       <button (click)="onFollowClick()" class="follow-btn">Follow</button>
-      <button class="unfollow-btn">Unfollow</button>
+      <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
     </div>
     <div class="user-details">
       <h3>{{ user.first_name }}</h3>
