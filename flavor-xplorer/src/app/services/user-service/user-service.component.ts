@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { User } from 'src/app/models/user.interface';
 import { environment } from 'src/app/environments';
-import { Observable, map } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })

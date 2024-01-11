@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
-import { NavbarComponent } from 'src/app/navbar/navbar.component';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

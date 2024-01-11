@@ -24,10 +24,9 @@ export class NewPostPopUpComponent {
     private http: HttpClient
   ) { }
 
-  // Function to get the authentication token
-  // Delete this function if the token can be obtained from somewhere else
-  private getAuthToken(): string {
-        return '';
+  private getAuthToken(): string | null  {
+        console.log(localStorage.getItem('token'));
+        return localStorage.getItem('token');
   }
 
   onSubmit(): void {

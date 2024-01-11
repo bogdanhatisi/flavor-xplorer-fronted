@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { NewPostPopUpComponent } from 'src/app/components/new-post-pop-up/new-post-pop-up.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home-page',
@@ -8,15 +10,13 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  private showModal = false;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private loginService: LoginService, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   switchModal() {
-    this.showModal = !this.showModal;
-    console.log('Modal is ' + this.showModal);
+    this.dialog.open(NewPostPopUpComponent);
   }
 
   logOut() {
