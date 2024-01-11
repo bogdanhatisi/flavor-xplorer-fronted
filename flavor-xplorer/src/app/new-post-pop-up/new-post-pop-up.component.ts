@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
+
 @Component({
   selector: 'app-new-post-pop-up',
   templateUrl: './new-post-pop-up.component.html',
@@ -13,7 +14,7 @@ export class NewPostPopUpComponent {
   steps: string = '';
   cookingTime: number = 0;
   servings: number = 0;
-  imageArray: { src: string, name: string }[] = [];
+  imageArray: File[] = [];
   videoArray: File[] = [];
   isButtonDisabled: boolean = true;
 
@@ -24,9 +25,9 @@ export class NewPostPopUpComponent {
   ) { }
 
   // Function to get the authentication token
+  // Delete this function if the token can be obtained from somewhere else
   private getAuthToken(): string {
-    // You may have logic to retrieve the token from storage or another source
-    return 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE3MDQ4ODk3Njd9.Csgy9xFHrFyPNHYb97Q0Zsc6Hu47_uJN6-EKk2zv_Xk'; // Replace with your actual access token
+        return '';
   }
 
   onSubmit(): void {
@@ -37,8 +38,8 @@ export class NewPostPopUpComponent {
         instructions: this.steps,
         cooking_time: this.cookingTime,
         servings: this.servings,
-        images: this.imageArray.map((image) => image.src), // Extracting only the image sources
-        videos: this.videoArray.map((video) => video.name) // Extracting only the video names or paths
+        images: this.imageArray.map((image) => image.name), 
+        videos: this.videoArray.map((video) => video.name) 
       }
     };
 
@@ -53,19 +54,15 @@ export class NewPostPopUpComponent {
           if (response) {
             console.log('Post created successfully:', response);
             this.dialogRef.close();
-          } else {
-            console.error('Unexpected response:', response);
-            // Handle unexpected response here
           }
         },
         error: (err: any) => {
-          if (err.status == 201) {
+          if (err.status === 201) {
             console.log('Post created successfully:', err);
             this.dialogRef.close();
           } else {
             console.error('Error creating post:', err);
           }
-          // Handle error here
         }
       });
   }
@@ -74,22 +71,11 @@ export class NewPostPopUpComponent {
     this.dialogRef.close();
   }
 
-  onFileSelected(event: any): void {
-    const files = event.target.files;
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader();
-        reader.readAsDataURL(files[i]);
-        reader.onload = (_event) => {
-          if (reader.result) {
-            const imageObject = {
-              src: reader.result as string,
-              name: files[i].name // Save the image name in the object
-            };
-            this.imageArray.push(imageObject);
-          }
-        };
-      }
+  onImageSelected(event: any): void {
+    const files: FileList = event.target.files;
+
+    if (files && files.length > 0) {
+      this.imageArray.push(files[0]);
     }
   }
 
@@ -115,8 +101,10 @@ export class NewPostPopUpComponent {
       this.recipeTitle.trim() !== '' &&
       this.ingredients.trim() !== '' &&
       this.steps.trim() !== '' &&
-      this.cookingTime !== 0 &&
-      this.servings !== 0
+      this.cookingTime > 0 &&
+      this.servings > 0 &&
+      this.cookingTime.toString() !== '' &&
+      this.servings.toString() !== ''
     ) {
       this.isButtonDisabled = false; // Enable the button
     } else {

@@ -8,7 +8,7 @@ import { NewPostPopUpComponent } from './new-post-pop-up/new-post-pop-up.compone
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private dialog: MatDialog) {} 
+  constructor(private dialog: MatDialog) { } 
 
   openModal(): void {
     this.dialog.open(NewPostPopUpComponent);

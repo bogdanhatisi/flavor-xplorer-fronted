@@ -8,10 +8,11 @@
     background-color: white;
     color: #2ec4b6;
     position: relative;
-    width: 50vw;
+    width: 40vw;
     height: 75vh;
     overflow: auto;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 /* Dialog title and close button */
@@ -79,9 +80,15 @@
     stroke: red;
 }
 
-form{
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100vh;
     margin-bottom: 20px;
 }
+
 
 ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-1.1em) scale(.75);
@@ -100,51 +107,50 @@ form{
 .time-servings {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-.image-container {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-}
-
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.button-wrapper {
+.attachment-container {
     display: flex;
-    width: 100%;
-    margin-top: auto; 
-    border: 2px transparent;
-    border-radius: 50px;
     justify-content: center;
+}
+
+.image-attach {
+    margin-right: 5px;
+}
+
+.image-container,
+.video-container {
+    width: 100%;
+    max-height: 25px;
+}
+
+.icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.submit-form-button {
+    margin-top: 10px;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
     background-color: #CBF3F0;
     transition: background-color 0.3s ease;
+    border: none;
+    color: white;
 }
 
-.button-wrapper:hover {
+.submit-form-button:not([disabled]):hover {
     background-color: #2EC4B6;
 }
 
-.button-wrapper button {
-    height: 40px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    color: #fff;
-    font-weight: bold;
-}
-
-.button-wrapper button:disabled {
-    width: 100%;
-    pointer-events: none;
+.disabled {
     background-color: #ccc;
-    color: #fff; 
-    border-radius: 50px;
-    transition: none;
+    cursor: not-allowed;
 }
-
