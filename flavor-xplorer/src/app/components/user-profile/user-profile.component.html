@@ -1,0 +1,40 @@
+<body>
+  <div class="profile">
+    <img
+      class="avatar"
+      src="https://via.placeholder.com/100"
+      alt="User Avatar"
+    />
+    <div *ngIf="userId !== '5'" class="buttons">
+      <button (click)="onFollowClick()" class="follow-btn">Follow</button>
+      <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
+    </div>
+    <div class="user-details">
+      <h3>{{ user.first_name }}</h3>
+      <h2>{{ user.last_name }}</h2>
+      <p>Gender: {{ user.gender }}</p>
+      <p>Followers: {{ followersNumber }}</p>
+      <p>Following: {{ followingNumber }}</p>
+    </div>
+  </div>
+
+  <div class="post-grid">
+    <!-- Placeholder posts -->
+    <div class="post">
+      <img src="https://via.placeholder.com/200" alt="Post Image" />
+      <p>Post 1</p>
+    </div>
+
+    <div class="post">
+      <img src="https://via.placeholder.com/200" alt="Post Image" />
+      <p>Post 2</p>
+    </div>
+
+    <div class="post">
+      <img src="https://via.placeholder.com/200" alt="Post Image" />
+      <p>Post 3</p>
+    </div>
+
+    <!-- Add more posts as needed -->
+  </div>
+</body>
