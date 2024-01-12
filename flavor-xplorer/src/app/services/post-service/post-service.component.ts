@@ -21,7 +21,7 @@ export class PostServiceComponent {
     });
   }
 
-  getLoggedUserPosts(userId: number): Promise<Post[]> {
+  getUserPosts(userId: number): Promise<Post[]> {
     const postUrl = `${this.apiUrl}/users/${userId}/posts/`;
     const headers = {
       'Content-Type': 'application/json',
@@ -37,6 +37,21 @@ export class PostServiceComponent {
       });
   }
 
+  getUserFeed(): Promise<Post[]> {
+    const postUrl = `${this.apiUrl}/posts/feed`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.tokenKey}`,
+    };
+
+    return axios
+      .get(postUrl, { headers })
+      .then((response) => response.data.feed_posts)
+      .catch((error) => {
+        console.error('Error fetching feed posts:', error);
+        throw error; // Re-throw the error to handle it in the calling code
+      });
+  }
   getPostData(postId: string): Promise<Post> {
     const postUrl = `${this.apiUrl}/posts/${postId}`;
     const headers = {

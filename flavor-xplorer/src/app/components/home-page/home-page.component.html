@@ -1,29 +1,36 @@
 <app-navbar></app-navbar>
 <div class="container">
+  <button class="add-button" type="button" (click)="switchModal()">
+    <span class="button__text">New Post</span>
+    <span class="button__icon"
+      ><svg
+        class="svg"
+        fill="none"
+        height="24"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line x1="12" x2="12" y1="5" y2="19"></line>
+        <line x1="5" x2="19" y1="12" y2="12"></line></svg
+    ></span>
+  </button>
 
+  <div id="post-container">
+    <!-- <app-post-body></app-post-body> -->
 
-    <button class="add-button" type="button" (click)="switchModal()">
-        <span class="button__text">New Post</span>
-        <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <line x1="12" x2="12" y1="5" y2="19"></line>
-                <line x1="5" x2="19" y1="12" y2="12"></line>
-            </svg></span>
-    </button>
-
-    <div id="post-container">
-            <!-- <app-post-body></app-post-body> -->
-            
-            <div class="card shadow">Dummy Card</div>
-            <div class="card shadow">Dummy Card</div>
-            <div class="card shadow">Dummy Card</div>
-            <div class="card shadow">Dummy Card</div>
-            <div class="card shadow">Dummy Card</div> 
-            <div class="card shadow">Dummy Card></div>
-
+    <div class="post-grid">
+      <div class="post-list">
+        <div *ngFor="let post of postsFeed" class="post-item">
+          <app-post [post]="post"></app-post>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <button (click)="logOut()">
-        Log out
-    </button>
+  <button (click)="logOut()">Log out</button>
 </div>

@@ -71,7 +71,7 @@ export class UserProfileComponent {
       });
 
     this.postService
-      .getLoggedUserPosts(this.targetUserId)
+      .getUserPosts(this.targetUserId)
       .then((response) => {
         this.userPosts = response;
         console.log('User posts:', this.userPosts);

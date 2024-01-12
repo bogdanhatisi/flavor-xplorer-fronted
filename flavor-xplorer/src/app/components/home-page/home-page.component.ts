@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { NewPostPopUpComponent } from 'src/app/components/new-post-pop-up/new-post-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
+import { Post } from 'src/app/models/post.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -10,10 +12,25 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
+  postsFeed: Post[];
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    private dialog: MatDialog,
+    private postService: PostServiceComponent
+  ) {}
 
-  constructor(private router: Router, private loginService: LoginService, private dialog: MatDialog) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.postService
+      .getUserFeed()
+      .then((response) => {
+        this.postsFeed = response;
+        console.log('User feed:', this.postsFeed);
+      })
+      .catch((error) => {
+        console.error('Error fetching posts feed:', error);
+      });
+  }
 
   switchModal() {
     this.dialog.open(NewPostPopUpComponent);
