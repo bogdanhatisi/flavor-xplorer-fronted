@@ -22,7 +22,7 @@ export class PostServiceComponent {
   }
 
   getLoggedUserPosts(userId: number): Promise<Post[]> {
-    const postUrl = `${this.apiUrl}user/${userId}/posts/`;
+    const postUrl = `${this.apiUrl}/users/${userId}/posts/`;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${this.tokenKey}`,
