@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -10,19 +11,26 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 })
 export class UserProfileComponent {
   user: User = {};
+  @Input() targetUserId: number;
   followers: string = '';
   following: string = '';
   followersNumber: number = 0;
   followingNumber: number = 0;
-  userId: string = '4';
-  currentUserId = parseInt(localStorage.getItem('user_id')!);
+  currentUserId: number = parseInt(localStorage.getItem('user_id')!);
 
-  constructor(private userService: UserServiceComponent) {}
+  constructor(
+    private userService: UserServiceComponent,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     // Fetch the user data
+    this.route.paramMap.subscribe((params) => {
+      this.targetUserId = parseInt(params.get('id')!);
+    });
+    console.log(this.targetUserId);
     this.userService
-      .findOne(this.currentUserId) // Replace '1' with the actual user ID
+      .findOne(this.targetUserId) // Replace '1' with the actual user ID
       .then((user) => {
         this.user = user;
         console.log('User Profile Data:', this.user);
@@ -32,7 +40,7 @@ export class UserProfileComponent {
       });
 
     this.userService
-      .getFollowers(this.currentUserId) // Replace '1' with the actual user ID
+      .getFollowers(this.targetUserId) // Replace '1' with the actual user ID
       .then((followers) => {
         this.followers = followers;
         this.followersNumber = followers.length;
@@ -43,7 +51,7 @@ export class UserProfileComponent {
       });
 
     this.userService
-      .getFollowing(this.currentUserId) // Replace '1' with the actual user ID
+      .getFollowing(this.targetUserId) // Replace '1' with the actual user ID
       .then((following) => {
         this.following = following;
         this.followingNumber = following.length;
@@ -57,7 +65,7 @@ export class UserProfileComponent {
   onFollowClick() {
     console.log('Merge followingu');
     this.userService
-      .followOrUnfollowUser(5, 'follow')
+      .followOrUnfollowUser(this.targetUserId, 'follow')
       .then((message) => {
         console.log('User now follows:', message);
       })
@@ -69,7 +77,7 @@ export class UserProfileComponent {
   onUnFollowClick() {
     console.log('Merge unfollowingu');
     this.userService
-      .followOrUnfollowUser(5, 'unfollow')
+      .followOrUnfollowUser(this.targetUserId, 'unfollow')
       .then((message) => {
         console.log('User now follows:', message);
       })

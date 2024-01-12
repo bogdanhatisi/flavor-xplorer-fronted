@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-
+import { environment } from 'src/app/environments';
 
 @Component({
   selector: 'app-new-post-pop-up',
   templateUrl: './new-post-pop-up.component.html',
-  styleUrls: ['./new-post-pop-up.component.css']
+  styleUrls: ['./new-post-pop-up.component.css'],
 })
 export class NewPostPopUpComponent {
   recipeTitle: string = '';
@@ -22,11 +22,11 @@ export class NewPostPopUpComponent {
     public dialogRef: MatDialogRef<NewPostPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient
-  ) { }
+  ) {}
 
-  private getAuthToken(): string | null  {
-        console.log(localStorage.getItem('token'));
-        return localStorage.getItem('token');
+  private getAuthToken(): string | null {
+    console.log(localStorage.getItem('token'));
+    return localStorage.getItem('token');
   }
 
   onSubmit(): void {
@@ -37,33 +37,32 @@ export class NewPostPopUpComponent {
         instructions: this.steps,
         cooking_time: this.cookingTime,
         servings: this.servings,
-        images: this.imageArray.map((image) => image.name), 
-        videos: this.videoArray.map((video) => video.name) 
-      }
+        images: this.imageArray.map((image) => image.name),
+        videos: this.videoArray.map((video) => video.name),
+      },
     };
 
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${this.getAuthToken()}`
+      Authorization: `Bearer ${this.getAuthToken()}`,
     });
 
     // Make the HTTP POST request
-    this.http.post('http://localhost:3000/api/posts', postBody, { headers })
-      .subscribe({
-        next: (response: any) => {
-          if (response) {
-            console.log('Post created successfully:', response);
-            this.dialogRef.close();
-          }
-        },
-        error: (err: any) => {
-          if (err.status === 201) {
-            console.log('Post created successfully:', err);
-            this.dialogRef.close();
-          } else {
-            console.error('Error creating post:', err);
-          }
+    this.http.post(environment.baseUrl, postBody, { headers }).subscribe({
+      next: (response: any) => {
+        if (response) {
+          console.log('Post created successfully:', response);
+          this.dialogRef.close();
         }
-      });
+      },
+      error: (err: any) => {
+        if (err.status === 201) {
+          console.log('Post created successfully:', err);
+          this.dialogRef.close();
+        } else {
+          console.error('Error creating post:', err);
+        }
+      },
+    });
   }
 
   closeDialog(): void {

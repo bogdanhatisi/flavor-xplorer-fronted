@@ -6,7 +6,7 @@
       src="https://via.placeholder.com/100"
       alt="User Avatar"
     />
-    <div *ngIf="userId !== '5'" class="buttons">
+    <div *ngIf="currentUserId !== targetUserId" class="buttons">
       <button (click)="onFollowClick()" class="follow-btn">Follow</button>
       <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
     </div>

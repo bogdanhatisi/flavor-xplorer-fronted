@@ -8,7 +8,7 @@ import { environment } from 'src/app/environments';
 })
 export class UserServiceComponent {
   baseUrl = environment.baseUrl;
-  jwtToken = environment.jwtToken;
+  jwtToken = localStorage.getItem('token');
 
   setJwtToken(token: string): void {
     this.jwtToken = token;
