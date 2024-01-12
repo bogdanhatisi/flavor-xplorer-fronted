@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { NewPostPopUpComponent } from './components/new-post-pop-up/new-post-pop-up.component';
 import { CommonModule } from '@angular/common';
-
+import { PostComponent } from './components/post/post.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,14 @@ import { CommonModule } from '@angular/common';
     HomePageComponent,
     LoginComponent,
     UserProfileComponent,
-    NewPostPopUpComponent
+    NewPostPopUpComponent,
+    PostComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -38,7 +43,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     MatIconModule,
     HttpClientModule,
-    CommonModule],
+    CommonModule,
+  ],
   bootstrap: [AppComponent],
   providers: [UserServiceComponent],
 })

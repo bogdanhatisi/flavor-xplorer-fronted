@@ -1,0 +1,23 @@
+<div class="post">
+  <img
+    *ngIf="post.images.length > 0; else placeholder"
+    [src]="post.images[0]"
+    alt="Post Image"
+    class="post-image"
+  />
+  <ng-template #placeholder>
+    <img
+      src="../../../assets/aaa.jpg"
+      alt="Placeholder"
+      class="placeholder-image"
+    />
+  </ng-template>
+  <div class="post-content">
+    <h2 class="post-title">{{ post.title }}</h2>
+    <div class="rating-container">
+      <p class="rating">
+        Rating: {{ post.rating_mean }} ({{ post.rating_count }} votes)
+      </p>
+    </div>
+  </div>
+</div>

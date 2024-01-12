@@ -47,22 +47,24 @@ export class NewPostPopUpComponent {
     });
 
     // Make the HTTP POST request
-    this.http.post(environment.baseUrl, postBody, { headers }).subscribe({
-      next: (response: any) => {
-        if (response) {
-          console.log('Post created successfully:', response);
-          this.dialogRef.close();
-        }
-      },
-      error: (err: any) => {
-        if (err.status === 201) {
-          console.log('Post created successfully:', err);
-          this.dialogRef.close();
-        } else {
-          console.error('Error creating post:', err);
-        }
-      },
-    });
+    this.http
+      .post(environment.baseUrl + '/posts', postBody, { headers })
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log('Post created successfully:', response);
+            this.dialogRef.close();
+          }
+        },
+        error: (err: any) => {
+          if (err.status === 201) {
+            console.log('Post created successfully:', err);
+            this.dialogRef.close();
+          } else {
+            console.error('Error creating post:', err);
+          }
+        },
+      });
   }
 
   closeDialog(): void {
