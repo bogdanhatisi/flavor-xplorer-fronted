@@ -1,86 +1,165 @@
 <div class="dialog-content">
-    <div class="top-container">
-        <div class="title-container">
-            <h2>Share Your Culinary Masterpiece!</h2>
-        </div>
-        <div class="close-icon-container" (click)="closeDialog()">
-            <mat-icon class="close-icon">close</mat-icon>
-        </div>
+  <div class="top-container">
+    <div class="title-container">
+      <h2>Share Your Culinary Masterpiece!</h2>
     </div>
-    <div class="line"></div>
-    <form>
-        <mat-form-field appearance="outline" class="custom-form-field">
-            <input matInput placeholder="Title of your recipe" [(ngModel)]="recipeTitle" name="recipeTitle"
-                (input)="checkCompletion()" #titleInput="ngModel" required minlength="5">
-            <mat-error *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)">
-                Please enter at least 5 characters.
-            </mat-error>
-        </mat-form-field>
+    <div class="close-icon-container" (click)="closeDialog()">
+      <mat-icon class="close-icon">close</mat-icon>
+    </div>
+  </div>
+  <div class="line"></div>
+  <form>
+    <mat-form-field appearance="outline" class="custom-form-field">
+      <input
+        matInput
+        placeholder="Title of your recipe"
+        [(ngModel)]="recipeTitle"
+        name="recipeTitle"
+        (input)="checkCompletion()"
+        #titleInput="ngModel"
+        required
+        minlength="5"
+      />
+      <mat-error
+        *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)"
+      >
+        Please enter at least 5 characters.
+      </mat-error>
+    </mat-form-field>
 
-        <mat-form-field appearance="outline" class="custom-form-field">
-            <textarea matInput placeholder="Ingredients" [(ngModel)]="ingredients" name="ingredients"
-                (input)="checkCompletion()" #ingredientsInput="ngModel" required minlength="10"></textarea>
-            <mat-error *ngIf="ingredientsInput.invalid && (ingredientsInput.dirty || ingredientsInput.touched)">
-                Please enter at least 10 characters.
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field appearance="outline" class="custom-form-field">
+      <textarea
+        matInput
+        placeholder="Ingredients"
+        [(ngModel)]="ingredients"
+        name="ingredients"
+        (input)="checkCompletion()"
+        #ingredientsInput="ngModel"
+        required
+        minlength="10"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          ingredientsInput.invalid &&
+          (ingredientsInput.dirty || ingredientsInput.touched)
+        "
+      >
+        Please enter at least 10 characters.
+      </mat-error>
+    </mat-form-field>
 
-        <mat-form-field appearance="outline" class="custom-form-field">
-            <textarea matInput placeholder="Steps" [(ngModel)]="steps" name="steps" (input)="checkCompletion()"
-                #stepsInput="ngModel" required minlength="10"></textarea>
-            <mat-error *ngIf="stepsInput.invalid && (stepsInput.dirty || stepsInput.touched)">
-                Please enter at least 10 characters.
-            </mat-error>
-        </mat-form-field>
+    <mat-form-field appearance="outline" class="custom-form-field">
+      <textarea
+        matInput
+        placeholder="Steps"
+        [(ngModel)]="steps"
+        name="steps"
+        (input)="checkCompletion()"
+        #stepsInput="ngModel"
+        required
+        minlength="10"
+      ></textarea>
+      <mat-error
+        *ngIf="stepsInput.invalid && (stepsInput.dirty || stepsInput.touched)"
+      >
+        Please enter at least 10 characters.
+      </mat-error>
+    </mat-form-field>
 
+    <div class="time-servings">
+      <mat-form-field appearance="outline" class="custom-form-field">
+        <mat-label>Cooking time</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Cooking Time"
+          [(ngModel)]="cookingTime"
+          name="cookingTime"
+          (input)="checkCompletion()"
+          #cookingTimeInput="ngModel"
+          min="1"
+        />
+        <mat-error
+          *ngIf="
+            cookingTime < 1 &&
+            (cookingTimeInput.dirty || cookingTimeInput.touched)
+          "
+        >
+          Please enter a value greater than or equal to 1.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="custom-form-field">
+        <mat-label>Servings</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Servings"
+          [(ngModel)]="servings"
+          name="servings"
+          (input)="checkCompletion()"
+          #servingsInput="ngModel"
+          min="1"
+        />
+        <mat-error
+          *ngIf="servings < 1 && (servingsInput.dirty || servingsInput.touched)"
+        >
+          Please enter a value greater than or equal to 1.
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-        <div class="time-servings">
-            <mat-form-field appearance="outline" class="custom-form-field">
-                <mat-label>Cooking time</mat-label>
-                <input matInput type="number" placeholder="Cooking Time" [(ngModel)]="cookingTime" name="cookingTime"
-                    (input)="checkCompletion()" #cookingTimeInput="ngModel" min="1">
-                <mat-error *ngIf="cookingTime < 1 && (cookingTimeInput.dirty || cookingTimeInput.touched)">
-                    Please enter a value greater than or equal to 1.
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="custom-form-field">
-                <mat-label>Servings</mat-label>
-                <input matInput type="number" placeholder="Servings" [(ngModel)]="servings" name="servings"
-                    (input)="checkCompletion()" #servingsInput="ngModel" min="1">
-                <mat-error *ngIf="servings < 1 && (servingsInput.dirty || servingsInput.touched)">
-                    Please enter a value greater than or equal to 1.
-                </mat-error>
-            </mat-form-field>
+    <div class="attachment-container">
+      <div class="image-attach">
+        <label for="fileInput">
+          <mat-icon class="icon">add_to_photos</mat-icon>
+        </label>
+        <input
+          type="file"
+          accept=".jpg, .jpeg, .png"
+          id="fileInput"
+          style="display: none"
+          (change)="onImageSelected($event)"
+        />
+        <div
+          class="image-container"
+          *ngFor="let image of imageArray; let i = index"
+        >
+          <span>{{ image.name }}</span>
+          <mat-icon class="icon" (click)="removeImage(i)">delete</mat-icon>
         </div>
+      </div>
 
-
-        <div class="attachment-container">
-            <div class="image-attach">
-                <label for="fileInput">
-                    <mat-icon class="icon">add_to_photos</mat-icon>
-                </label>
-                <input type="file" accept=".jpg, .jpeg, .png" id="fileInput" style="display: none"
-                    (change)="onImageSelected($event)">
-                <div class="image-container" *ngFor="let image of imageArray; let i = index">
-                    <span>{{ image.name }}</span>
-                    <mat-icon class="icon" (click)="removeImage(i)">delete</mat-icon>
-                </div>
-            </div>
-
-            <div class="video-attach">
-                <label for="videoInput">
-                    <mat-icon class="icon">video_library</mat-icon>
-                </label>
-                <input type="file" id="videoInput" style="display: none" accept="video/*" multiple
-                    (change)="onVideoSelected($event)">
-                <div class="video-container" *ngFor="let video of videoArray; let i = index">
-                    <span>{{ video.name }}</span>
-                    <mat-icon class="icon" (click)="removeVideo(i)">delete</mat-icon>
-                </div>
-            </div>
+      <div class="video-attach">
+        <label for="videoInput">
+          <mat-icon class="icon">video_library</mat-icon>
+        </label>
+        <input
+          type="file"
+          id="videoInput"
+          style="display: none"
+          accept="video/*"
+          multiple
+          (change)="onVideoSelected($event)"
+        />
+        <div
+          class="video-container"
+          *ngFor="let video of videoArray; let i = index"
+        >
+          <span>{{ video.name }}</span>
+          <mat-icon class="icon" (click)="removeVideo(i)">delete</mat-icon>
         </div>
+      </div>
+    </div>
 
-        <button class="submit-form-button" id="submitButton" type="submit" [disabled]="isButtonDisabled"
-            (click)="onSubmit()" [ngClass]="{ 'disabled': isButtonDisabled }">Post</button>
-    </form>
+    <button
+      class="submit-form-button"
+      id="submitButton"
+      type="submit"
+      [disabled]="isButtonDisabled"
+      (click)="onSubmit()"
+      [ngClass]="{ disabled: isButtonDisabled }"
+    >
+      Post
+    </button>
+  </form>
 </div>

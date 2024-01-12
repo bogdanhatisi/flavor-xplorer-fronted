@@ -20,22 +20,10 @@
   </div>
 
   <div class="post-grid">
-    <!-- Placeholder posts -->
-    <div class="post">
-      <img src="https://via.placeholder.com/200" alt="Post Image" />
-      <p>Post 1</p>
+    <div class="post-list">
+      <div *ngFor="let post of userPosts" class="post-item">
+        <app-post [post]="post"></app-post>
+      </div>
     </div>
-
-    <div class="post">
-      <img src="https://via.placeholder.com/200" alt="Post Image" />
-      <p>Post 2</p>
-    </div>
-
-    <div class="post">
-      <img src="https://via.placeholder.com/200" alt="Post Image" />
-      <p>Post 3</p>
-    </div>
-
-    <!-- Add more posts as needed -->
   </div>
 </body>

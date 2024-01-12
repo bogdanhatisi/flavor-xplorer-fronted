@@ -4,6 +4,10 @@ import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ActivatedRoute } from '@angular/router';
+import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
+import { Post } from 'src/app/models/post.interface';
+import { PostComponent } from '../post/post.component';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -17,8 +21,10 @@ export class UserProfileComponent {
   followersNumber: number = 0;
   followingNumber: number = 0;
   currentUserId: number = parseInt(localStorage.getItem('user_id')!);
+  userPosts: Post[];
 
   constructor(
+    private postService: PostServiceComponent,
     private userService: UserServiceComponent,
     private route: ActivatedRoute
   ) {}
@@ -59,6 +65,16 @@ export class UserProfileComponent {
       })
       .catch((error) => {
         console.error('Error fetching user profile:', error);
+      });
+
+    this.postService
+      .getLoggedUserPosts(this.targetUserId)
+      .then((response) => {
+        this.userPosts = response;
+        console.log('User posts:', this.userPosts);
+      })
+      .catch((error) => {
+        console.error('Error fetching posts:', error);
       });
   }
 
