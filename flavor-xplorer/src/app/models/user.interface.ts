@@ -1,9 +1,3 @@
-enum Gender {
-  male = 'male',
-  female = 'female',
-  prefer_not_to_say = 'prefer_not_to_say',
-}
-
 export interface User {
   id?: number;
   username?: string;
@@ -13,6 +7,6 @@ export interface User {
   last_name?: string;
   description?: string;
   pronouns?: string;
-  gender?: Gender;
+  gender?: string;
   avatar?: string;
 }

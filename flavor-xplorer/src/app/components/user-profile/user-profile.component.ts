@@ -39,6 +39,9 @@ export class UserProfileComponent {
       .findOne(this.targetUserId) // Replace '1' with the actual user ID
       .then((user) => {
         this.user = user;
+        if (user.gender == 'prefer_not_to_say') {
+          user.gender = 'Prefer not to say';
+        }
         console.log('User Profile Data:', this.user);
       })
       .catch((error) => {
