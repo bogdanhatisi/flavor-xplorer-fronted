@@ -1,49 +1,74 @@
-/* post.component.css */
-
 .post {
-  position: relative;
-  max-width: 400px; /* Adjust the max-width as needed */
-  margin: 20px;
-  padding: 20px;
   border: 1px solid #ddd;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  overflow: hidden;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 600px; /* Set a maximum width for the post */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
 .post:hover {
-  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hover effect with increased shadow */
 }
 
-.post-image, .placeholder-image {
+.post-image {
   width: 100%;
   height: auto;
-  margin-bottom: 10px;
-}
-
-.post-title {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-}
-
-.rating-container {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  text-align: right;
-}
-
-.rating {
-  font-size: 0.9em;
-  margin: 0;
 }
 
 .placeholder-image {
   width: 100%;
   height: auto;
-  background: #eee; /* Placeholder background color */
+}
+
+.post-content {
+  padding: 16px;
+}
+
+.post-title {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #2d2d2d; /* Dark text color */
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.rating {
+  font-size: 1rem;
+  color: #ffbf69; /* Primary Color */
+  margin: 0;
+}
+
+.comment-section {
+  margin-top: 16px;
+}
+
+textarea {
+  width: calc(100% - 16px);
+  padding: 8px;
+  margin-bottom: 8px;
   border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #3897f0; /* Instagram's blue color */
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: #f5f5f5; /* Light background color for comments */
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
