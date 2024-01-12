@@ -1,0 +1,132 @@
+{
+    "id": 2,
+    "title": "User Post",
+    "ingredients": "Ingredient A, Ingredient B",
+    "instructions": "Step A, Step B",
+    "cooking_time": 45,
+    "servings": 2,
+    "user": {
+        "user_id": 2,
+        "username": "user",
+        "avatar_url": null
+    },
+    "created_at": "2024-01-08T16:44:41.922Z",
+    "updated_at": "2024-01-08T16:44:41.922Z",
+    "comments": [
+        [
+            {
+                "id": 32,
+                "content": "Accusantium voluptatem est hic.",
+                "created_at": "2024-01-08T16:44:43.511Z",
+                "updated_at": "2024-01-08T16:44:43.511Z",
+                "user": {
+                    "user_id": 2,
+                    "username": "user",
+                    "avatar": null
+                },
+                "replies_count": 0
+            },
+            {
+                "id": 31,
+                "content": "Placeat dolores exercitationem qui.",
+                "created_at": "2024-01-08T16:44:43.505Z",
+                "updated_at": "2024-01-08T16:44:43.505Z",
+                "user": {
+                    "user_id": 2,
+                    "username": "user",
+                    "avatar": null
+                },
+                "replies_count": 3
+            },
+            {
+                "id": 30,
+                "content": "Occaecati dolor libero omnis.",
+                "created_at": "2024-01-08T16:44:43.500Z",
+                "updated_at": "2024-01-08T16:44:43.500Z",
+                "user": {
+                    "user_id": 2,
+                    "username": "user",
+                    "avatar": null
+                },
+                "replies_count": 1
+            },
+            {
+                "id": 29,
+                "content": "Ut rerum natus dicta.",
+                "created_at": "2024-01-08T16:44:43.495Z",
+                "updated_at": "2024-01-08T16:44:43.495Z",
+                "user": {
+                    "user_id": 1,
+                    "username": "admin",
+                    "avatar": null
+                },
+                "replies_count": 0
+            },
+            {
+                "id": 28,
+                "content": "Est quae eligendi adipisci.",
+                "created_at": "2024-01-08T16:44:43.489Z",
+                "updated_at": "2024-01-08T16:44:43.489Z",
+                "user": {
+                    "user_id": 1,
+                    "username": "admin",
+                    "avatar": null
+                },
+                "replies_count": 4
+            },
+            {
+                "id": 27,
+                "content": "Sunt accusantium corrupti mollitia.",
+                "created_at": "2024-01-08T16:44:43.484Z",
+                "updated_at": "2024-01-08T16:44:43.484Z",
+                "user": {
+                    "user_id": 1,
+                    "username": "admin",
+                    "avatar": null
+                },
+                "replies_count": 5
+            },
+            {
+                "id": 26,
+                "content": "Id nesciunt assumenda fugiat.",
+                "created_at": "2024-01-08T16:44:43.479Z",
+                "updated_at": "2024-01-08T16:44:43.479Z",
+                "user": {
+                    "user_id": 1,
+                    "username": "admin",
+                    "avatar": null
+                },
+                "replies_count": 1
+            },
+            {
+                "id": 25,
+                "content": "Accusamus voluptatem iure optio.",
+                "created_at": "2024-01-08T16:44:43.474Z",
+                "updated_at": "2024-01-08T16:44:43.474Z",
+                "user": {
+                    "user_id": 2,
+                    "username": "user",
+                    "avatar": null
+                },
+                "replies_count": 4
+            },
+            {
+                "id": 24,
+                "content": "Et aut aperiam maxime.",
+                "created_at": "2024-01-08T16:44:43.469Z",
+                "updated_at": "2024-01-08T16:44:43.469Z",
+                "user": {
+                    "user_id": 2,
+                    "username": "user",
+                    "avatar": null
+                },
+                "replies_count": 2
+            }
+        ],
+        3
+    ],
+    "rating_mean": 4.0,
+    "rating_count": 1,
+    "images": [],
+    "videos": []
+}
