@@ -47,9 +47,14 @@
     
     <div *ngIf="submissionType === 'join'">
         <div class="field">
-            <label class="input-label" for="gender">Gender (male/female/other) </label>
-            <input #genderInput="ngModel" ngModel type="text" name="gender" required class="form-control">
-            <span class="error" *ngIf="!genderInput.valid && genderInput.touched">
+            <label class="input-label" for="gender">Gender</label>
+            <select [(ngModel)]="selectedGender" name="gender" class="form-control" required #selectGender="ngModel">
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="other">other</option>
+            </select>
+        
+            <span class="error" *ngIf="!selectGender.valid && selectGender.touched">
                 Please enter your gender.
             </span>
         </div>

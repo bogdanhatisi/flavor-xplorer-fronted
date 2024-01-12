@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('form') form : NgForm | undefined;
     submissionType : 'login' | 'join' = 'login';
     genderValue : number = -1;
+    selectedGender : string = "";
 
     constructor(private loginService : LoginService, private router : Router) {}
 
@@ -33,19 +34,8 @@ export class LoginComponent implements OnInit {
         } else {
           const { username,email, first_name, last_name,gender, password, password_confirmation } = this.form?.value;
      //     console.log(email, firstName, gender)
-          if (gender === 'male') {
-            this.genderValue = 0;
-          }
-          else if (gender === 'female') {
-            this.genderValue = 1;
-          }
-          else if (gender === 'other') {
-            this.genderValue = 2;
-          }
-          else {
-            alert("Gender incorrect!")
-            return
-          }
+          
+          
           if (password != password_confirmation) {
             alert("The passwords don't match");
             return;
@@ -67,5 +57,17 @@ export class LoginComponent implements OnInit {
         else if (this.submissionType === 'join') {
             this.submissionType = 'login';
         }
+    }
+
+    setGenderValue(gender : string) {
+      if (gender === 'male') {
+        this.genderValue = 0;
+      }
+      else if (gender === 'female') {
+        this.genderValue = 1;
+      }
+      else if (gender === 'other') {
+        this.genderValue = 2;
+      }
     }
 }

@@ -93,3 +93,7 @@
     .field {
         margin-top: 10px;
     }
+
+    select {
+        outline: none;
+    }
