@@ -83,6 +83,7 @@
         height: 25px;
         padding: 0;
         margin-bottom: 10px;
+        outline: none;
     }
     
     .error {
