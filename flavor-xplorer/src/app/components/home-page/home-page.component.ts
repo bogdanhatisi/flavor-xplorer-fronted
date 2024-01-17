@@ -12,7 +12,7 @@ import { Post } from 'src/app/models/post.interface';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  postsFeed: Post[];
+  postsFeed: any;
   constructor(
     private dialog: MatDialog,
     private postService: PostServiceComponent
