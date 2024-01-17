@@ -10,6 +10,7 @@ import { PostServiceComponent } from '../../services/post-service/post-service.c
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
+  @Input() post: any; // Change 'any' to a more specific type if possible
   @Input() showSaveButton = true;
   @Output() save = new EventEmitter<number>();
 

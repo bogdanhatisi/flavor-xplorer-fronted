@@ -79,6 +79,12 @@ export class PostServiceComponent {
 
   getBookmarkedPosts(): Promise<Post[]> {
     // Call the API to get bookmarked posts
-    return this.http.get<Post[]>(`${this.apiUrl}/posts/bookmarks/all`).toPromise();
+    return this.http.get<Post[]>(`${this.apiUrl}/posts/bookmarks/all`)
+    .toPromise()
+    .then(data => data as Post[]) // Explicitly cast the data to Post[]
+    .catch((error) => {
+      console.error('Error fetching bookmarked posts:', error);
+      throw error;
+    });
   }
 }
