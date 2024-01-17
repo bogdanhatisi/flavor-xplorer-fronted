@@ -14,8 +14,6 @@ import { Post } from 'src/app/models/post.interface';
 export class HomePageComponent implements OnInit {
   postsFeed: Post[];
   constructor(
-    private router: Router,
-    private loginService: LoginService,
     private dialog: MatDialog,
     private postService: PostServiceComponent
   ) {}
@@ -36,9 +34,6 @@ export class HomePageComponent implements OnInit {
     this.dialog.open(NewPostPopUpComponent);
   }
 
-  logOut() {
-    this.loginService.logout();
-  }
 
   searchText:string = '';
 

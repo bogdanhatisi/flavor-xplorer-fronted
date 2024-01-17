@@ -16,14 +16,15 @@
       <p>Gender: {{ user.gender }}</p>
       <p>Followers: {{ followersNumber }}</p>
       <p>Following: {{ followingNumber }}</p>
+      <button class="logout" (click)="logout()">Log out</button>
     </div>
+    
+    
   </div>
 
   <div class="post-grid">
-    <div class="post-list">
-      <div *ngFor="let post of userPosts" class="post-item">
+      <div *ngFor="let post of userPosts" class="post">
         <app-post [post]="post"></app-post>
       </div>
-    </div>
   </div>
 </body>

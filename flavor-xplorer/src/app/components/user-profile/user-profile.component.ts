@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 import { PostComponent } from '../post/post.component';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,6 +27,7 @@ export class UserProfileComponent {
   constructor(
     private postService: PostServiceComponent,
     private userService: UserServiceComponent,
+    private loginService: LoginService,
     private route: ActivatedRoute
   ) {}
 
@@ -103,5 +105,9 @@ export class UserProfileComponent {
       .catch((error) => {
         console.error('Error following:', error);
       });
+  }
+
+  logout() {
+    this.loginService.logout()
   }
 }

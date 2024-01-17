@@ -52,6 +52,24 @@ export class PostServiceComponent {
         throw error; // Re-throw the error to handle it in the calling code
       });
   }
+
+  getExploreFeed() : Promise<Post[]> {
+    const url = `${this.apiUrl}/posts/explore?query=`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.tokenKey}`,
+    }
+
+    return axios
+      .get(url, {headers})
+      .then(response => response.data.explore_posts)
+      .catch(error => {
+        console.error('Error fetching explore posts:', error);
+        throw error;
+      });
+  }
+
+
   getPostData(postId: string): Promise<Post> {
     const postUrl = `${this.apiUrl}/posts/${postId}`;
     const headers = {
