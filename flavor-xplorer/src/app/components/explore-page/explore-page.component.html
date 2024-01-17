@@ -20,8 +20,8 @@
       
     
     <div class="post-grid">
-      <div *ngFor="let post of postList" [ngClass]="{'post-item': searchText === '' || post.title.toLowerCase().includes(searchText)}">
-        <app-post [post]="post" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText)"></app-post>
+      <div *ngFor="let post of postList" [ngClass]="{'post-item': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase())}">
+        <app-post [post]="post" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase())"></app-post>
       </div>
     </div>
     

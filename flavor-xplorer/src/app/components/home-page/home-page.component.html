@@ -25,7 +25,7 @@
     <div class="post-grid">
       <div class="post-list">
         <div *ngFor="let post of postsFeed" class="post-item">
-          <app-post [post]="post" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText)"></app-post>
+          <app-post [post]="post" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase())"></app-post>
         </div>
       </div>
     </div>
