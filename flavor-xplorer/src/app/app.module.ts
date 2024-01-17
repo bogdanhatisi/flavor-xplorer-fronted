@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NewPostPopUpComponent } from './components/new-post-pop-up/new-post-pop-up.component';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from './components/post/post.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PostComponent } from './components/post/post.component';
     UserProfileComponent,
     NewPostPopUpComponent,
     PostComponent,
+    BookmarkComponent,
   ],
   imports: [
     BrowserModule,

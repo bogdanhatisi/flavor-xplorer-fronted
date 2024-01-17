@@ -20,4 +20,7 @@
       </p>
     </div>
   </div>
+  <button *ngIf="showSaveButton" class="save-button" (click)="savePost(post.id)">
+    Save
+  </button>
 </div>

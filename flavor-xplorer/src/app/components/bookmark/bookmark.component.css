@@ -1,0 +1,18 @@
+/* bookmark.component.css */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .post-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .post-item {
+    margin: 10px;
+  }
+  

@@ -67,4 +67,18 @@ export class PostServiceComponent {
         throw error; // Re-throw the error to handle it in the calling code
       });
   }
+  savePost(postId: number): Promise<any> {
+    // Call the API to save the post
+    return this.http.post(`${this.apiUrl}/posts/${postId}/bookmark`, {}).toPromise();
+  }
+
+  deleteBookmark(postId: number): Promise<any> {
+    // Call the API to delete the bookmark
+    return this.http.delete(`${this.apiUrl}/posts/${postId}/unbookmark`).toPromise();
+  }
+
+  getBookmarkedPosts(): Promise<Post[]> {
+    // Call the API to get bookmarked posts
+    return this.http.get<Post[]>(`${this.apiUrl}/posts/bookmarks/all`).toPromise();
+  }
 }
