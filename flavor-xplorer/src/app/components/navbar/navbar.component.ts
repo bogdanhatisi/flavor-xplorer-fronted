@@ -20,7 +20,7 @@ export class NavbarComponent {
   }
 
   onExplore() {
-    // navigate to explore page
+    this.router.navigateByUrl('explore');
   }
 
   onSubmitSearch(event: any) {
