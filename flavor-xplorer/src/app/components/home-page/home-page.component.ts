@@ -39,4 +39,11 @@ export class HomePageComponent implements OnInit {
   logOut() {
     this.loginService.logout();
   }
+
+  searchText:string = '';
+
+  onSearchTextEntered(searchValue:string){
+    this.searchText = searchValue;
+  }
+
 }

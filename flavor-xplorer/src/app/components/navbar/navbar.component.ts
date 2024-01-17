@@ -23,9 +23,12 @@ export class NavbarComponent {
     // navigate to explore page
   }
 
-  onSubmitSearch(event: any) {
-    const inputValue = event.target.value;
+  enteredSearchedValue: string = '';
 
-    console.log('Ai scris: ' + inputValue + '! Bravo prostule!');
+  @Output()
+  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
+
+  onSearchTextChanged(){
+    this.searchTextChanged.emit(this.enteredSearchedValue);
   }
 }

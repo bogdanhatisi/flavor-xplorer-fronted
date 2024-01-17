@@ -27,7 +27,7 @@
         </svg>
         
         
-        <input class="input" type="search" placeholder="Search" (keyup.enter)="onSubmitSearch($event)"/>
+        <input class="input" type="search" placeholder="Search" [(ngModel)]="enteredSearchedValue" (input)="onSearchTextChanged()"/>
       </div>
 
 
