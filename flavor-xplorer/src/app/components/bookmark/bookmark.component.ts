@@ -1,6 +1,5 @@
-// bookmark.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 
@@ -11,19 +10,34 @@ import { Post } from 'src/app/models/post.interface';
 })
 export class BookmarkComponent implements OnInit {
   bookmarkedPosts: Post[];
+  userId: number; // Add userId property
 
-  constructor(private postService: PostServiceComponent, private route: ActivatedRoute) {}
+  constructor(private postService: PostServiceComponent, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.postService
-      .getBookmarkedPosts()
-      .then((response) => {
-        this.bookmarkedPosts = response;
-        console.log('Bookmarked posts:', this.bookmarkedPosts);
-      })
-      .catch((error) => {
-        console.error('Error fetching bookmarked posts:', error);
-      });
+    // Get userId from route parameters
+    this.route.params.subscribe((params) => {
+      const userIdParam = params['userId'];
+      
+      // Check if userIdParam is present and a valid number
+      if (userIdParam && !isNaN(userIdParam as any)) {
+        this.userId = +userIdParam;
+        
+        this.postService
+  .getBookmarkedPosts(this.userId)  // Provide the userId of the user whose bookmarked posts you want to retrieve
+  .then((response) => {
+    this.bookmarkedPosts = response;
+    console.log('Bookmarked posts:', this.bookmarkedPosts);
+  })
+  .catch((error) => {
+    console.error('Error fetching bookmarked posts:', error);
+  });
+      } //else {
+        //console.error('Invalid userId:', userIdParam);
+         //Handle the case where userId is not present or not a valid number
+        // For example, you could redirect the user to an error page or a default view
+      //}
+    });
   }
 
   deleteBookmark(postId: number) {
@@ -37,5 +51,4 @@ export class BookmarkComponent implements OnInit {
       .catch((error) => {
         console.error('Error deleting bookmark:', error);
       });
-  }
-}
+  }}

@@ -9,7 +9,7 @@
     <div *ngIf="currentUserId !== targetUserId" class="buttons">
       <button (click)="onFollowClick()" class="follow-btn">Follow</button>
       <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
-      <button (click)="goToBookmarks()" class="bookmark-btn">Bookmarks</button>
+      
     </div>
     <div class="user-details">
       <h3>{{ user.first_name }}</h3>
@@ -17,6 +17,7 @@
       <p>Gender: {{ user.gender }}</p>
       <p>Followers: {{ followersNumber }}</p>
       <p>Following: {{ followingNumber }}</p>
+      <button (click)="goToBookmarks()" class="bookmark-btn">Bookmarks</button>
     </div>
   </div>
 

@@ -77,14 +77,19 @@ export class PostServiceComponent {
     return this.http.delete(`${this.apiUrl}/posts/${postId}/unbookmark`).toPromise();
   }
 
-  getBookmarkedPosts(): Promise<Post[]> {
-    // Call the API to get bookmarked posts
-    return this.http.get<Post[]>(`${this.apiUrl}/posts/bookmarks/all`)
-    .toPromise()
-    .then(data => data as Post[]) // Explicitly cast the data to Post[]
-    .catch((error) => {
-      console.error('Error fetching bookmarked posts:', error);
-      throw error;
-    });
+  getBookmarkedPosts(userId: number): Promise<Post[]> {
+    const apiUrl = `${this.apiUrl}/users/${userId}/bookmarks`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+  
+    return axios
+      .get<Post[]>(apiUrl, { headers })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error('Error fetching bookmarked posts:', error);
+        throw error;
+      });
   }
 }
