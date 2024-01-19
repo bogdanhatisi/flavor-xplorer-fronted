@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (searchTextChanged)="onSearchTextEntered($event)"></app-navbar>
 <div class="container">
   <button class="add-button" type="button" (click)="switchModal()">
     <span class="button__text">New Post</span>
@@ -16,21 +16,15 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <line x1="12" x2="12" y1="5" y2="19"></line>
-        <line x1="5" x2="19" y1="12" y2="12"></line></svg
-    ></span>
+        <line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
   </button>
 
   <div id="post-container">
-    <!-- <app-post-body></app-post-body> -->
-
+   
     <div class="post-grid">
-      <div class="post-list">
-        <div *ngFor="let post of postsFeed" class="post-item">
-          <app-post [post]="post"></app-post>
+        <div *ngFor="let post of postsFeed" [ngClass]="{'post': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) }" class="post">
+          <app-post [post]="post" [showDeleteButton] = false (save)="receivePostIdAndSaveToBookmarks($event)" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) "></app-post>
         </div>
-      </div>
     </div>
   </div>
-
-  <button (click)="logOut()">Log out</button>
 </div>

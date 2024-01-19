@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ExplorePageComponent } from './components/explore-page/explore-page.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,11 @@ const routes: Routes = [
     path: 'profile/:id',
     component: UserProfileComponent,
   },
+  {
+    path: 'explore',
+    component: ExplorePageComponent,
+  },
+  { path: 'bookmarks', component: BookmarkComponent },
 ];
 
 @NgModule({

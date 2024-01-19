@@ -72,3 +72,44 @@ button {
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+
+.save-button {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  background-color: #2ec4b6;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #2d8cf0;
+}
+
+.delete-button{
+  position: relative;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+  margin-left:20px;
+}
+
+.delete-button:hover {
+  background-color: #2ec4b6;
+}
+
+.post-username{
+  color: rgb(189, 183, 183);
+}

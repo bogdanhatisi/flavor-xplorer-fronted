@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { NewPostPopUpComponent } from 'src/app/components/new-post-pop-up/new-post-pop-up.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/app/environments';
+
 
 @Component({
   selector: 'app-home-page',
@@ -14,11 +17,10 @@ import { Post } from 'src/app/models/post.interface';
 export class HomePageComponent implements OnInit {
   postsFeed: Post[];
   constructor(
-    private router: Router,
-    private loginService: LoginService,
     private dialog: MatDialog,
-    private postService: PostServiceComponent
-  ) {}
+    private postService: PostServiceComponent,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.postService
@@ -36,7 +38,33 @@ export class HomePageComponent implements OnInit {
     this.dialog.open(NewPostPopUpComponent);
   }
 
-  logOut() {
-    this.loginService.logout();
+  receivePostIdAndSaveToBookmarks(postId: number) {
+    console.log(postId);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+
+    this.http.post(environment.baseUrl + `/posts/${postId}/bookmark`, null, { headers })
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log('Post added to bookmarks successfully:', response);
+          }
+        },
+        error: (err: any) => {
+          if (err.status === 201) {
+            console.log('Post added to bookmarks successfully:', err);
+          } else {
+            console.error('Error adding post:', err);
+          }
+        },
+      });
   }
+
+  searchText:string = '';
+
+  onSearchTextEntered(searchValue:string){
+    this.searchText = searchValue;
+  }
+
 }

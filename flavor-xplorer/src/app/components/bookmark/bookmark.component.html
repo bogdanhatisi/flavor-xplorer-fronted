@@ -1,0 +1,10 @@
+<!-- bookmark.component.html -->
+<app-navbar></app-navbar>
+<div class="container">
+    <h1 class="saved-title">Saved</h1>
+    <div class="post-grid">
+        <div *ngFor="let bookmarkedPost of bookmarkedPosts" class="post-item">
+          <app-post [post]="bookmarkedPost" [showSaveButton] = false (delete)="deleteBookmark($event)"></app-post>
+        </div>
+    </div>
+</div>

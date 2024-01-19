@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NewPostPopUpComponent } from './components/new-post-pop-up/new-post-pop-up.component';
 import { CommonModule } from '@angular/common';
 import { PostComponent } from './components/post/post.component';
+import { ExplorePageComponent } from './components/explore-page/explore-page.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { EditProfilePopUpComponent } from './components/edit-profile-pop-up/edit-profile-pop-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,6 +33,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NewPostPopUpComponent,
     PostComponent,
     EditProfilePopUpComponent,
+    ExplorePageComponent,
+    BookmarkComponent,
   ],
   imports: [
     BrowserModule,

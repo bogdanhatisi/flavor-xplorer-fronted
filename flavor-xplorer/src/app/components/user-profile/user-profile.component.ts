@@ -3,10 +3,14 @@ import { Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 import { PostComponent } from '../post/post.component';
+import { LoginService } from 'src/app/services/login.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/app/environments';
+
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProfilePopUpComponent } from '../edit-profile-pop-up/edit-profile-pop-up.component';
 
@@ -28,7 +32,10 @@ export class UserProfileComponent {
   constructor(
     private postService: PostServiceComponent,
     private userService: UserServiceComponent,
+    private loginService: LoginService,
     private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient,
     private modalService: NgbModal
   ) {}
 
@@ -116,5 +123,13 @@ export class UserProfileComponent {
         // Handle any logic after saving changes, if needed
       }
     });
+  }
+
+  logout() {
+    this.loginService.logout();
+  }
+  goToBookmarks() {
+    // Navigate to the bookmarks page
+    this.router.navigate(['bookmarks']);
   }
 }
