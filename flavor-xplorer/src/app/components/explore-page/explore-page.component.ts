@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/app/environments';
 import { Post } from 'src/app/models/post.interface';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 
@@ -10,7 +12,9 @@ import { PostServiceComponent } from 'src/app/services/post-service/post-service
 export class ExplorePageComponent implements OnInit{
   postList : any;
 
-  constructor(private postService : PostServiceComponent) {}
+  constructor(private postService : PostServiceComponent,
+    private http: HttpClient
+    ) {}
 
   ngOnInit(): void {
     this.postService
@@ -32,5 +36,28 @@ export class ExplorePageComponent implements OnInit{
 
   onSearchTextEntered(searchValue:string){
     this.searchText = searchValue;
+  }
+
+  receivePostIdAndSaveToBookmarks(postId: number) {
+    console.log(postId);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+
+    this.http.post(environment.baseUrl + `/posts/${postId}/bookmark`, null, { headers })
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log('Post added to bookmarks successfully:', response);
+          }
+        },
+        error: (err: any) => {
+          if (err.status === 201) {
+            console.log('Post added to bookmarks successfully:', err);
+          } else {
+            console.error('Error adding post:', err);
+          }
+        },
+      });
   }
 }

@@ -13,7 +13,9 @@ import { Post } from 'src/app/models/post.interface';
 export class PostComponent implements OnInit {
   @Input() post: Post; // Change 'any' to a more specific type if possible
   @Input() showSaveButton = true;
+  @Input() showDeleteButton = true;
   @Output() save = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
 
   constructor(private postService: PostServiceComponent) {}
 
@@ -21,5 +23,9 @@ export class PostComponent implements OnInit {
 
   savePost() {
     this.save.emit(this.post.id);
+  }
+
+  deletePost() {
+    this.delete.emit(this.post.id)
   }
 }

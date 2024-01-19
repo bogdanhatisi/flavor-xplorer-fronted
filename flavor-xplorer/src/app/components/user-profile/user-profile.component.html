@@ -23,7 +23,7 @@
 
   <div class="post-grid">
       <div *ngFor="let post of userPosts" class="post">
-        <app-post [post]="post" [showSaveButton]="false"></app-post>
+        <app-post [post]="post" [showDeleteButton] = false [showSaveButton]="false"></app-post>
       </div>
   </div>
 </body>
