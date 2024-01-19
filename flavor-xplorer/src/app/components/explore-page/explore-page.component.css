@@ -12,18 +12,20 @@
 
 .post-grid {
   display: flex;
+  align-items: stretch;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
 }
 
 .post-item {
-  flex: 1 0 calc(25% - 20px); /* 4 items per line; adjust spacing as needed */
+ /* 4 items per line; adjust spacing as needed */
   background-color: #cbf3f0;
   margin: 10px;
   padding: 20px;
   text-align: center;
-  max-width: calc(25% - 20px);
+  width: 25%;
   transition: background-color 0.3s ease;
 }
 
