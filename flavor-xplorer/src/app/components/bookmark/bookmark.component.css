@@ -1,22 +1,44 @@
 /* bookmark.component.css */
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-  }
-  
-  .post-grid {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  
-  .post-item {
-    margin: 10px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 100px;
+}
 
-  .saved-title {
-    margin-top: 60px; 
-  }
-  
+.post-grid {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.post-item {
+  /* 4 items per line; adjust spacing as needed */
+  background-color: #cbf3f0;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 25%;
+  transition: background-color 0.3s ease;
+}
+
+
+
+
+.post-item:hover {
+  background-color: #2ec4b6;
+}
+
+.post-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.saved-title {
+  margin-top: 60px;
+}

@@ -109,3 +109,7 @@ button {
 .delete-button:hover {
   background-color: #2ec4b6;
 }
+
+.post-username{
+  color: rgb(189, 183, 183);
+}

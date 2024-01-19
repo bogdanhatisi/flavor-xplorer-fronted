@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   @Input() post: Post; // Change 'any' to a more specific type if possible
   @Input() showSaveButton = true;
   @Input() showDeleteButton = true;
+  @Input() showUsername = true;
   @Output() save = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
 
