@@ -22,11 +22,9 @@
   <div id="post-container">
    
     <div class="post-grid">
-      <div class="post-list">
-        <div *ngFor="let post of postsFeed" class="post-item">
+        <div *ngFor="let post of postsFeed" [ngClass]="{'post': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())}" class="post">
           <app-post [post]="post" (save)="receivePostIdAndSaveToBookmarks($event)" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())"></app-post>
         </div>
-      </div>
     </div>
   </div>
 </div>
