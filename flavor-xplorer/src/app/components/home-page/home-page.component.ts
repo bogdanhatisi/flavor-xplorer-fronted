@@ -15,7 +15,7 @@ import { environment } from 'src/app/environments';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  postsFeed: Post[];
+  postsFeed: any;
   constructor(
     private dialog: MatDialog,
     private postService: PostServiceComponent,

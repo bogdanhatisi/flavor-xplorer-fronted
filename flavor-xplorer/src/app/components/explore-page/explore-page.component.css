@@ -15,7 +15,7 @@
   align-items: stretch;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
 }
 
