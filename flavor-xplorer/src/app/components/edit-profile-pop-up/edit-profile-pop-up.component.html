@@ -1,0 +1,32 @@
+<!-- edit-profile-modal.component.html -->
+<div class="modal-header">
+  <h4 class="modal-title">Edit Profile</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- Add your form controls here -->
+  <form (ngSubmit)="onSaveClick()">
+    <!-- Example: Update user's first name -->
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        [(ngModel)]="user.first_name"
+        name="firstName"
+        class="form-control"
+        required
+      />
+    </div>
+    <!-- Add other form fields for updating the profile -->
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+</div>

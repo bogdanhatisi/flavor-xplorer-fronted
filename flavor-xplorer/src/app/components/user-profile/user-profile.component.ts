@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 import { PostComponent } from '../post/post.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfilePopUpComponent } from '../edit-profile-pop-up/edit-profile-pop-up.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,7 +28,8 @@ export class UserProfileComponent {
   constructor(
     private postService: PostServiceComponent,
     private userService: UserServiceComponent,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +106,15 @@ export class UserProfileComponent {
       .catch((error) => {
         console.error('Error following:', error);
       });
+  }
+
+  openEditProfileModal() {
+    const modalRef = this.modalService.open(EditProfilePopUpComponent);
+    modalRef.componentInstance.user = { ...this.user }; // Pass a copy of the user data to the modal
+    modalRef.result.then((result) => {
+      if (result === 'save') {
+        // Handle any logic after saving changes, if needed
+      }
+    });
   }
 }

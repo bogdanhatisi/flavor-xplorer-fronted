@@ -6,9 +6,28 @@
       src="https://via.placeholder.com/100"
       alt="User Avatar"
     />
-    <div *ngIf="currentUserId !== targetUserId" class="buttons">
-      <button (click)="onFollowClick()" class="follow-btn">Follow</button>
-      <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
+    <div class="buttons">
+      <button
+        *ngIf="currentUserId !== targetUserId"
+        (click)="onFollowClick()"
+        class="follow-btn"
+      >
+        Follow
+      </button>
+      <button
+        *ngIf="currentUserId !== targetUserId"
+        (click)="onUnFollowClick()"
+        class="unfollow-btn"
+      >
+        Unfollow
+      </button>
+      <button
+        *ngIf="currentUserId === targetUserId"
+        (click)="openEditProfileModal()"
+        class="edit-profile-btn"
+      >
+        Edit Profile
+      </button>
     </div>
     <div class="user-details">
       <h3>{{ user.first_name }}</h3>
