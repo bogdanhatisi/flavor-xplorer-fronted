@@ -68,6 +68,8 @@ export class PostServiceComponent {
       });
   }
   savePost(postId: number): Promise<any> {
+
+    //console.log(postId);
     // Call the API to save the post
     return this.http.post(`${this.apiUrl}/posts/${postId}/bookmark`, {}).toPromise();
   }

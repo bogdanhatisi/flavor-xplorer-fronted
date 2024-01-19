@@ -14,6 +14,7 @@ import { Post } from 'src/app/models/post.interface';
 })
 export class HomePageComponent implements OnInit {
   postsFeed: Post[];
+  postId: number;
   constructor(
     private router: Router,
     private loginService: LoginService,
@@ -21,7 +22,10 @@ export class HomePageComponent implements OnInit {
     private postService: PostServiceComponent
   ) {}
 
-  @Output() save = new EventEmitter<number>();
+  receivePostId($event: number){
+    this.postId = $event;
+    console.log(this.postId + "fjnsanbvgkdjsvndjkafvnjk");
+  }
 
   ngOnInit(): void {
     this.postService
@@ -43,16 +47,17 @@ export class HomePageComponent implements OnInit {
     this.loginService.logout();
   }
 
-  savePost(postId: number) {
-    // Call the API to save the post
-    this.postService
-      .savePost(postId)
-      .then(() => {
-        // Emit an event to inform parent components
-        this.save.emit(postId);
-      })
-      .catch((error) => {
-        console.error('Error saving post:', error);
-      });
-}
+//   savePost(postId: number) {
+//     // Call the API to save the post
+//     console.log(postId);
+//     this.postService
+//       .savePost(postId)
+//       .then(() => {
+//         // Emit an event to inform parent components
+//         this.save.emit(postId);
+//       })
+//       .catch((error) => {
+//         console.error('Error saving post:', error);
+//       });
+// }
 }

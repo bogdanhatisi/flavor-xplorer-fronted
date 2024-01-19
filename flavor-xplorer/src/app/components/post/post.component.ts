@@ -18,8 +18,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  savePost(postId: number) {
-    // Emit an event to inform parent components
-    this.save.emit(postId);
+  savePost() {
+    this.save.emit(this.post.id);
   }
 }

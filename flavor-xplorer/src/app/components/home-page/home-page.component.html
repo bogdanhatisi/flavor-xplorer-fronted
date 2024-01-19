@@ -33,9 +33,10 @@
 <!-- <post save buton> -->
   <div class="post-list">
     <div *ngFor="let post of postsFeed" class="post-item">
-      <app-post [post]="post" (save)="savePost(post.id)"></app-post>
+      <app-post [post]="post" (save)="receivePostId($event)"></app-post>
     </div>
   </div>
+
 
   <button (click)="logOut()">Log out</button>
 </div>
