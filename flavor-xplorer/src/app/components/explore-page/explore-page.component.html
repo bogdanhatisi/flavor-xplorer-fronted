@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (searchTextChanged)="onSearchTextEntered($event)"></app-navbar>
 <div class="container">
     <button class="button-explore" (click)="reload()">
         <p>Explore</p>
@@ -20,9 +20,9 @@
       
     
     <div class="post-grid">
-          <div *ngFor="let post of postList" class="post-item">
-            <app-post [post]="post"></app-post>
-          </div>
-
+      <div *ngFor="let post of postList" [ngClass]="{'post-item': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())}">
+        <app-post [post]="post" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())"></app-post>
+      </div>
     </div>
+    
 </div>

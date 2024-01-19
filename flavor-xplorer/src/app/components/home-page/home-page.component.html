@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar (searchTextChanged)="onSearchTextEntered($event)"></app-navbar>
 <div class="container">
   <button class="add-button" type="button" (click)="switchModal()">
     <span class="button__text">New Post</span>
@@ -24,7 +24,7 @@
     <div class="post-grid">
       <div class="post-list">
         <div *ngFor="let post of postsFeed" class="post-item">
-          <app-post [post]="post" (save)="receivePostIdAndSaveToBookmarks($event)"></app-post>
+          <app-post [post]="post" (save)="receivePostIdAndSaveToBookmarks($event)" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())"></app-post>
         </div>
       </div>
     </div>

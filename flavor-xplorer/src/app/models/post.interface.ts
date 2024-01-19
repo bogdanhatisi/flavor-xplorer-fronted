@@ -1,3 +1,5 @@
+import { User } from "./user.interface";
+
 export interface Post {
   id: number;
   title: string;
@@ -11,4 +13,5 @@ export interface Post {
   rating_count: number;
   images: string[]; // Assuming images are represented by an array of URLs
   videos: string[]; // Assuming videos are represented by an array of URLs
+  user: User;
 }
