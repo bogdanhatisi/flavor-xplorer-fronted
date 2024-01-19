@@ -1,8 +1,9 @@
 // post.component.ts
 
-import { Component, OnInit } from '@angular/core';
+import {EventEmitter, Output, Component, Input, OnInit } from '@angular/core';
 
 import { PostServiceComponent } from '../../services/post-service/post-service.component';
+import { Post } from 'src/app/models/post.interface';
 
 @Component({
   selector: 'app-post',
@@ -10,18 +11,21 @@ import { PostServiceComponent } from '../../services/post-service/post-service.c
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
-  post: any; // Change 'any' to a more specific type if possible
+  @Input() post: Post; // Change 'any' to a more specific type if possible
+  @Input() showSaveButton = true;
+  @Input() showDeleteButton = true;
+  @Output() save = new EventEmitter<number>();
+  @Output() delete = new EventEmitter<number>();
 
   constructor(private postService: PostServiceComponent) {}
 
-  ngOnInit(): void {
-    this.postService.getPostData().subscribe((data: any) => {
-      this.post = data;
-      console.log('Value of this.post:', this.post);
-    });
+  ngOnInit(): void {}
+
+  savePost() {
+    this.save.emit(this.post.id);
   }
 
-  getRatingArray(rating: number): number[] {
-    return Array.from({ length: rating }, (_, index) => index + 1);
+  deletePost() {
+    this.delete.emit(this.post.id)
   }
 }

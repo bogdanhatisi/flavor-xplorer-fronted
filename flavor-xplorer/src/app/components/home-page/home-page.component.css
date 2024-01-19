@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.post-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.post-grid {
+  align-items: stretch;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.post {
+  flex: 1 0 calc(25% - 20px);
+  background-color: #cbf3f0;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.post:hover {
+  background-color: #2ec4b6; /* Change to secondary accent color on hover */
+}
+
+.post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.add-button {
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: #2ec4b6;
+  --bg-color: #cbf3f0;
+  --main-color: #323232;
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  margin-top: 50px;
+  box-shadow: 0 0 0 4px rgba(175, 228, 224, 0.1);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.add-button,
+.button__icon,
+.button__text {
+  transition: all 0.3s;
+}
+
+.add-button .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.add-button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-button .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.add-button:hover {
+  background: var(--bg-color);
+}
+
+.add-button:hover .button__text {
+  color: transparent;
+}
+
+.add-button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.add-buttons:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+.card {
+  width: 190px;
+  height: 254px;
+  background: white;
+  border-radius: 10px;
+  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 15px 0 15px;
+}
+
+.shadow {
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(190, 190, 190),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.save-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2ec4b6;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #2d8cf0;
+}
