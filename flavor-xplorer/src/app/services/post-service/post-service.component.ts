@@ -68,30 +68,53 @@ export class PostServiceComponent {
       });
   }
   savePost(postId: number): Promise<any> {
+    const saveBookmarkUrl = `${this.apiUrl}/posts/${postId}/bookmark`
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
 
-    //console.log(postId);
-    // Call the API to save the post
-    return this.http.post(`${this.apiUrl}/posts/${postId}/bookmark`, {}).toPromise();
+    return axios.post(saveBookmarkUrl, { headers })
+    .then(response => {
+      console.log('Post bookmarked successfully:', response);
+    })
+    .catch(error => {
+      console.error('Error bookmarking post:', error);
+      throw error;
+    });
   }
 
   deleteBookmark(postId: number): Promise<any> {
-    // Call the API to delete the bookmark
-    return this.http.delete(`${this.apiUrl}/posts/${postId}/unbookmark`).toPromise();
+    const deleteUrl = `${this.apiUrl}/posts/${postId}/unbookmark`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    return axios.delete(deleteUrl, { headers })
+    .then(response => {
+      console.log('Post unbookmarked successfully:', response);
+    })
+    .catch(error => {
+      console.error('Error unbookmarking post:', error);
+      throw error;
+    });
   }
 
-  getBookmarkedPosts(userId: number): Promise<Post[]> {
-    const apiUrl = `${this.apiUrl}/users/${userId}/bookmarks`;
+  getBookmarkedPosts(): Promise<Post[]> {
+    const apiUrl = `${this.apiUrl}/posts/bookmarks`;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     };
   
     return axios
-      .get<Post[]>(apiUrl, { headers })
-      .then((response) => response.data)
+      .get<{ bookmarked_posts: Post[] }>(apiUrl, { headers })
+      .then((response) => response.data.bookmarked_posts)
       .catch((error) => {
         console.error('Error fetching bookmarked posts:', error);
         throw error;
       });
   }
+  
 }

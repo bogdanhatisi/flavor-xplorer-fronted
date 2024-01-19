@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 import { PostComponent } from '../post/post.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/app/environments';
 
 
 
@@ -30,7 +32,8 @@ export class UserProfileComponent {
     private postService: PostServiceComponent,
     private userService: UserServiceComponent,
     private route: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      private http: HttpClient
   ) {}
 
   ngOnInit(): void {

@@ -25,15 +25,9 @@
     <div class="post-grid">
       <div class="post-list">
         <div *ngFor="let post of postsFeed" class="post-item">
-          <app-post [post]="post"></app-post>
+          <app-post [post]="post" (save)="receivePostIdAndSaveToBookmarks($event)"></app-post>
         </div>
       </div>
-    </div>
-  </div>
-<!-- <post save buton> -->
-  <div class="post-list">
-    <div *ngFor="let post of postsFeed" class="post-item">
-      <app-post [post]="post" (save)="receivePostId($event)"></app-post>
     </div>
   </div>
 

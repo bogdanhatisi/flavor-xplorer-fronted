@@ -5,7 +5,8 @@
     <div class="post-grid">
       <div class="post-list">
         <div *ngFor="let bookmarkedPost of bookmarkedPosts" class="post-item">
-          <app-post [post]="bookmarkedPost" (delete)="deleteBookmark(bookmarkedPost.id)"></app-post>
+          <app-post [post]="bookmarkedPost"></app-post>
+          <button (click)="deleteBookmark(bookmarkedPost.id)" class="delete-button">Delete</button>
         </div>
       </div>
     </div>

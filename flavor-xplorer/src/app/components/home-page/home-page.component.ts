@@ -5,6 +5,8 @@ import { NewPostPopUpComponent } from 'src/app/components/new-post-pop-up/new-po
 import { MatDialog } from '@angular/material/dialog';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/app/environments';
 
 
 @Component({
@@ -14,18 +16,13 @@ import { Post } from 'src/app/models/post.interface';
 })
 export class HomePageComponent implements OnInit {
   postsFeed: Post[];
-  postId: number;
   constructor(
     private router: Router,
     private loginService: LoginService,
     private dialog: MatDialog,
-    private postService: PostServiceComponent
-  ) {}
-
-  receivePostId($event: number){
-    this.postId = $event;
-    console.log(this.postId + "fjnsanbvgkdjsvndjkafvnjk");
-  }
+    private postService: PostServiceComponent,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.postService
@@ -47,17 +44,26 @@ export class HomePageComponent implements OnInit {
     this.loginService.logout();
   }
 
-//   savePost(postId: number) {
-//     // Call the API to save the post
-//     console.log(postId);
-//     this.postService
-//       .savePost(postId)
-//       .then(() => {
-//         // Emit an event to inform parent components
-//         this.save.emit(postId);
-//       })
-//       .catch((error) => {
-//         console.error('Error saving post:', error);
-//       });
-// }
+  receivePostIdAndSaveToBookmarks(postId: number) {
+    console.log(postId);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+
+    this.http.post(environment.baseUrl + `/posts/${postId}/bookmark`, null, { headers })
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            console.log('Post added to bookmarks successfully:', response);
+          }
+        },
+        error: (err: any) => {
+          if (err.status === 201) {
+            console.log('Post added to bookmarks successfully:', err);
+          } else {
+            console.error('Error adding post:', err);
+          }
+        },
+      });
+  }
 }
