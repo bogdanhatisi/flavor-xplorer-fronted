@@ -1,6 +1,6 @@
 // post.component.ts
 
-import { Component, Input, OnInit } from '@angular/core';
+import {EventEmitter, Output, Component, Input, OnInit } from '@angular/core';
 
 import { PostServiceComponent } from '../../services/post-service/post-service.component';
 
@@ -11,8 +11,14 @@ import { PostServiceComponent } from '../../services/post-service/post-service.c
 })
 export class PostComponent implements OnInit {
   @Input() post: any; // Change 'any' to a more specific type if possible
+  @Input() showSaveButton = true;
+  @Output() save = new EventEmitter<number>();
 
   constructor(private postService: PostServiceComponent) {}
 
   ngOnInit(): void {}
+
+  savePost() {
+    this.save.emit(this.post.id);
+  }
 }

@@ -19,6 +19,7 @@ import { NewPostPopUpComponent } from './components/new-post-pop-up/new-post-pop
 import { CommonModule } from '@angular/common';
 import { PostComponent } from './components/post/post.component';
 import { ExplorePageComponent } from './components/explore-page/explore-page.component';
+import { BookmarkComponent } from './components/bookmark/bookmark.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ExplorePageComponent } from './components/explore-page/explore-page.com
     NewPostPopUpComponent,
     PostComponent,
     ExplorePageComponent,
+    BookmarkComponent,
   ],
   imports: [
     BrowserModule,

@@ -85,4 +85,54 @@ export class PostServiceComponent {
         throw error; // Re-throw the error to handle it in the calling code
       });
   }
+  savePost(postId: number): Promise<any> {
+    const saveBookmarkUrl = `${this.apiUrl}/posts/${postId}/bookmark`
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    return axios.post(saveBookmarkUrl, { headers })
+    .then(response => {
+      console.log('Post bookmarked successfully:', response);
+    })
+    .catch(error => {
+      console.error('Error bookmarking post:', error);
+      throw error;
+    });
+  }
+
+  deleteBookmark(postId: number): Promise<any> {
+    const deleteUrl = `${this.apiUrl}/posts/${postId}/unbookmark`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+
+    return axios.delete(deleteUrl, { headers })
+    .then(response => {
+      console.log('Post unbookmarked successfully:', response);
+    })
+    .catch(error => {
+      console.error('Error unbookmarking post:', error);
+      throw error;
+    });
+  }
+
+  getBookmarkedPosts(): Promise<Post[]> {
+    const apiUrl = `${this.apiUrl}/posts/bookmarks`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+  
+    return axios
+      .get<{ bookmarked_posts: Post[] }>(apiUrl, { headers })
+      .then((response) => response.data.bookmarked_posts)
+      .catch((error) => {
+        console.error('Error fetching bookmarked posts:', error);
+        throw error;
+      });
+  }
+  
 }

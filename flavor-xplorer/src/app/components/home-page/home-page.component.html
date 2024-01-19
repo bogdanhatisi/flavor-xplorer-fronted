@@ -16,8 +16,7 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <line x1="12" x2="12" y1="5" y2="19"></line>
-        <line x1="5" x2="19" y1="12" y2="12"></line></svg
-    ></span>
+        <line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
   </button>
 
   <div id="post-container">
@@ -25,11 +24,9 @@
     <div class="post-grid">
       <div class="post-list">
         <div *ngFor="let post of postsFeed" class="post-item">
-          <app-post [post]="post"></app-post>
+          <app-post [post]="post" (save)="receivePostIdAndSaveToBookmarks($event)"></app-post>
         </div>
       </div>
     </div>
   </div>
-
-  
 </div>

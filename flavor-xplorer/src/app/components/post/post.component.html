@@ -19,5 +19,8 @@
         Rating: {{ post.rating_mean }} ({{ post.rating_count }} votes)
       </p>
     </div>
+    <button *ngIf="showSaveButton" class="save-button" (click)="savePost()">
+      Save
+    </button>
   </div>
 </div>

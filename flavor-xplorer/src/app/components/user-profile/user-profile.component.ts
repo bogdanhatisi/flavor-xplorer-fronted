@@ -3,11 +3,15 @@ import { Observable, switchMap } from 'rxjs';
 import { User } from 'src/app/models/user.interface';
 import { UserServiceComponent } from 'src/app/services/user-service/user-service.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PostServiceComponent } from 'src/app/services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
 import { PostComponent } from '../post/post.component';
 import { LoginService } from 'src/app/services/login.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/app/environments';
+
+
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +19,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent {
+
   user: User = {};
   @Input() targetUserId: number;
   followers: string = '';
@@ -28,8 +33,10 @@ export class UserProfileComponent {
     private postService: PostServiceComponent,
     private userService: UserServiceComponent,
     private loginService: LoginService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     // Fetch the user data
@@ -109,5 +116,9 @@ export class UserProfileComponent {
 
   logout() {
     this.loginService.logout()
+  }
+  goToBookmarks() {
+    // Navigate to the bookmarks page
+    this.router.navigate(['bookmarks']);
   }
 }

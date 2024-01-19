@@ -1,14 +1,12 @@
 <app-navbar></app-navbar>
+
 <body>
   <div class="profile">
-    <img
-      class="avatar"
-      src="https://via.placeholder.com/100"
-      alt="User Avatar"
-    />
+    <img class="avatar" src="https://via.placeholder.com/100" alt="User Avatar" />
     <div *ngIf="currentUserId !== targetUserId" class="buttons">
       <button (click)="onFollowClick()" class="follow-btn">Follow</button>
       <button (click)="onUnFollowClick()" class="unfollow-btn">Unfollow</button>
+
     </div>
     <div class="user-details">
       <h3>{{ user.first_name }}</h3>
@@ -17,14 +15,17 @@
       <p>Followers: {{ followersNumber }}</p>
       <p>Following: {{ followingNumber }}</p>
       <button class="logout" (click)="logout()">Log out</button>
+      <button (click)="goToBookmarks()" class="bookmark-btn">Bookmarks</button>
     </div>
-    
-    
+
+
   </div>
 
   <div class="post-grid">
-      <div *ngFor="let post of userPosts" class="post">
-        <app-post [post]="post"></app-post>
+    <div class="post-list">
+      <div *ngFor="let post of userPosts" class="post-item">
+        <app-post [post]="post" [showSaveButton]="false"></app-post>
       </div>
+    </div>
   </div>
 </body>
