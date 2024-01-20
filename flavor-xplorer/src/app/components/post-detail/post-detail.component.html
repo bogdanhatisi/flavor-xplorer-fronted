@@ -1,0 +1,49 @@
+<div class="main-page">
+  <div class="recipe-details">
+    <!-- Main Image -->
+    <div class="main-image">
+      <!-- Left arrow -->
+      <div class="arrow left">&lt;</div>
+
+      <!-- Display main image here -->
+      <img src="{{ post.images.length > 0 ? post.images[0] : '../../../assets/aaa.jpg' }}" alt="Main Image">
+
+      <!-- Right arrow -->
+      <div class="arrow right">&gt;</div>
+    </div>
+
+    <!-- Recipe Information -->
+    <div class="recipe-info">
+      <h2>{{ post.title }}</h2>
+      <p>Ingredients: {{ post.ingredients }}</p>
+      <p>Instructions: {{ post.instructions }}</p>
+      <p>Cooking Time: {{ post.cooking_time }} minutes</p>
+      <p>Servings: {{ post.servings }}</p>
+    </div>
+  </div>
+
+  <!-- Comments Section with Pagination -->
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <ul>
+      <li *ngFor="let comment of pagedComments">
+          <span class="text1">{{ comment.content }}</span>
+      </li>
+    </ul>
+    <!-- Pagination controls here -->
+    <div class="pagination">
+      <button (click)="loadPreviousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button (click)="loadNextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+    <form (ngSubmit)="addComment()" #commentForm="ngForm">
+      <textarea
+        name="newComment"
+        [(ngModel)]="newCommentContent"
+        placeholder="Add a comment..."
+        required
+      ></textarea>
+      <button type="submit" [disabled]="commentForm.invalid">Add Comment</button>
+    </form>
+  </div>
+</div>
