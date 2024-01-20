@@ -1,4 +1,4 @@
-<!-- edit-profile-modal.component.html -->
+<!-- edit-profile-pop-up.component.html -->
 <div class="modal-header">
   <h4 class="modal-title">Edit Profile</h4>
   <button
@@ -11,9 +11,8 @@
   </button>
 </div>
 <div class="modal-body">
-  <!-- Add your form controls here -->
-  <form (ngSubmit)="onSaveClick()">
-    <!-- Example: Update user's first name -->
+  <form (ngSubmit)="onSaveClick()" #editProfileForm="ngForm">
+    <!-- First Name -->
     <div class="form-group">
       <label for="firstName">First Name</label>
       <input
@@ -25,8 +24,72 @@
         required
       />
     </div>
-    <!-- Add other form fields for updating the profile -->
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        [(ngModel)]="user.last_name"
+        name="lastName"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Description
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        [(ngModel)]="user.description"
+        name="description"
+        class="form-control"
+      ></textarea>
+    </div> -->
+
+    <!-- Pronouns -->
+    <div class="form-group">
+      <label for="pronouns">Pronouns</label>
+      <input
+        type="text"
+        id="pronouns"
+        [(ngModel)]="user.pronouns"
+        name="pronouns"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <input
+        type="text"
+        id="gender"
+        [(ngModel)]="user.gender"
+        name="gender"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="avatar">Avatar</label>
+      <input
+        type="file"
+        id="avatar"
+        name="avatar"
+        (change)="onAvatarChange($event)"
+        class="form-control"
+      />
+    </div>
+
+    <!-- Save Changes Button -->
+    <button
+      type="submit"
+      [disabled]="!editProfileForm.valid"
+      class="btn btn-primary"
+    >
+      Save Changes
+    </button>
   </form>
 </div>

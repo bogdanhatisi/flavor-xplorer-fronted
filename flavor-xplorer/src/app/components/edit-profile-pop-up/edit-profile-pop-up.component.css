@@ -1,0 +1,35 @@
+/* edit-profile-pop-up.component.css */
+
+.modal-header {
+  background-color: #ffbf69;
+  color: #fff;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Adjust the styling for the Save Changes button */
+.btn-primary {
+  background-color: #ff9f1c;
+  color: #fff;
+  border: none;
+}
+
+/* Disable the button when the form is not valid */
+.btn-primary:disabled {
+  background-color: #ccc;
+  color: #555;
+}

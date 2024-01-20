@@ -9,14 +9,14 @@
     />
     <div class="buttons">
       <button
-        *ngIf="currentUserId !== targetUserId"
+        *ngIf="currentUserId !== targetUserId && !userFollowsThis"
         (click)="onFollowClick()"
         class="follow-btn"
       >
         Follow
       </button>
       <button
-        *ngIf="currentUserId !== targetUserId"
+        *ngIf="currentUserId !== targetUserId && userFollowsThis"
         (click)="onUnFollowClick()"
         class="unfollow-btn"
       >

@@ -10,7 +10,7 @@ import { PostComponent } from '../post/post.component';
 import { LoginService } from 'src/app/services/login.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/app/environments';
-
+import { FollowerResponse } from 'src/app/models/followerResponse.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditProfilePopUpComponent } from '../edit-profile-pop-up/edit-profile-pop-up.component';
 
@@ -22,12 +22,13 @@ import { EditProfilePopUpComponent } from '../edit-profile-pop-up/edit-profile-p
 export class UserProfileComponent {
   user: User = {};
   @Input() targetUserId: number;
-  followers: string = '';
-  following: string = '';
+  followers: FollowerResponse[] = [];
+  following: FollowerResponse[] = [];
   followersNumber: number = 0;
   followingNumber: number = 0;
-  currentUserId: number = parseInt(localStorage.getItem('user_id')!);
+  currentUserId: number;
   userPosts: Post[];
+  userFollowsThis: boolean;
 
   constructor(
     private postService: PostServiceComponent,
@@ -40,6 +41,7 @@ export class UserProfileComponent {
   ) {}
 
   ngOnInit(): void {
+    this.currentUserId = parseInt(localStorage.getItem('user_id')!);
     // Fetch the user data
     this.route.paramMap.subscribe((params) => {
       this.targetUserId = parseInt(params.get('id')!);
@@ -63,7 +65,10 @@ export class UserProfileComponent {
       .then((followers) => {
         this.followers = followers;
         this.followersNumber = followers.length;
-        console.log('User followers:', this.followersNumber);
+        console.log('User followers:', this.followersNumber, followers);
+        console.log(this.followers[0]!.id);
+
+        this.userFollowsThis = this.checkIfUserFollowsThis();
       })
       .catch((error) => {
         console.error('Error fetching user profile:', error);
@@ -74,7 +79,7 @@ export class UserProfileComponent {
       .then((following) => {
         this.following = following;
         this.followingNumber = following.length;
-        console.log('User following:', this.followingNumber);
+        console.log('User following:', this.followingNumber, following);
       })
       .catch((error) => {
         console.error('Error fetching user profile:', error);
@@ -97,6 +102,7 @@ export class UserProfileComponent {
       .followOrUnfollowUser(this.targetUserId, 'follow')
       .then((message) => {
         console.log('User now follows:', message);
+        this.ngOnInit();
       })
       .catch((error) => {
         console.error('Error following:', error);
@@ -109,6 +115,7 @@ export class UserProfileComponent {
       .followOrUnfollowUser(this.targetUserId, 'unfollow')
       .then((message) => {
         console.log('User now follows:', message);
+        this.ngOnInit();
       })
       .catch((error) => {
         console.error('Error following:', error);
@@ -120,9 +127,21 @@ export class UserProfileComponent {
     modalRef.componentInstance.user = { ...this.user }; // Pass a copy of the user data to the modal
     modalRef.result.then((result) => {
       if (result === 'save') {
-        // Handle any logic after saving changes, if needed
+        this.ngOnInit();
       }
     });
+  }
+
+  checkIfUserFollowsThis(): boolean {
+    console.log('TEST');
+    for (const follower of this.followers) {
+      if (follower.id == this.currentUserId) {
+        console.log(follower);
+        return true;
+      }
+    }
+
+    return false;
   }
 
   logout() {
