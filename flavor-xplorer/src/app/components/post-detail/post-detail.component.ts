@@ -22,6 +22,7 @@ export class PostDetailComponent implements OnInit{
   comments: postComment[] = []; // Assuming you have a Comment interface or class
   itemsPerPage: number = 5; // Adjust the number of comments per page as needed
   currentPage: number = 1;
+  newCommentContent: string = '';
 
   get pagedComments(): postComment[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -55,6 +56,26 @@ export class PostDetailComponent implements OnInit{
       this.comments = comments;
     });
   }
+
+  addComment(): void {
+    // Check if the new comment content is not empty
+    if (this.newCommentContent.trim() !== '') {
+      const newComment: string = `{"content": "${this.newCommentContent}"}`;
+
+      const postId = this.post.id;
+
+      // Call the service to add the comment
+      this.postDetailService.addComment(postId, newComment).then((addedComment) => {
+        // Update the comments list and reset the new comment content
+        this.comments.unshift(addedComment); // Add the new comment at the beginning
+        this.newCommentContent = ''; // Reset the new comment content
+        this.ngOnInit();
+      }).catch(error => {
+        console.error('Error adding comment:', error);
+      });
+    }
+  }
+
 
   closeDialog(): void {
     this.dialogRef.close();

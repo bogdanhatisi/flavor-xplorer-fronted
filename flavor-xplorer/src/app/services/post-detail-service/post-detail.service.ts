@@ -44,4 +44,22 @@ export class PostDetailService {
       throw error; // Re-throw the error to handle it in the calling code
     }
   }
+
+  async addComment(postId: number, comment: string): Promise<postComment> {
+    const commentUrl = `${this.apiUrl}/posts/${postId}/comments`;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.tokenKey}`,
+    };
+
+    try {
+      const response = await axios.post(commentUrl, comment, { headers });
+      const addedComment = response.data; // Assuming the response contains the newly added comment
+
+      return addedComment;
+    } catch (error) {
+      console.error('Error adding comment:', error);
+      throw error; // Re-throw the error to handle it in the calling code
+    }
+  }
 }

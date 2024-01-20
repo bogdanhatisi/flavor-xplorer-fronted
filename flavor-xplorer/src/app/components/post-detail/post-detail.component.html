@@ -36,5 +36,14 @@
       <span>{{ currentPage }} / {{ totalPages }}</span>
       <button (click)="loadNextPage()" [disabled]="currentPage === totalPages">Next</button>
     </div>
+    <form (ngSubmit)="addComment()" #commentForm="ngForm">
+      <textarea
+        name="newComment"
+        [(ngModel)]="newCommentContent"
+        placeholder="Add a comment..."
+        required
+      ></textarea>
+      <button type="submit" [disabled]="commentForm.invalid">Add Comment</button>
+    </form>
   </div>
 </div>
