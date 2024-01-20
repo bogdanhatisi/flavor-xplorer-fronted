@@ -125,18 +125,18 @@ export class UserProfileComponent {
   openEditProfileModal() {
     const modalRef = this.modalService.open(EditProfilePopUpComponent);
     modalRef.componentInstance.user = { ...this.user }; // Pass a copy of the user data to the modal
+    console.log(modalRef.result);
     modalRef.result.then((result) => {
       if (result === 'save') {
+        console.log('TEST');
         this.ngOnInit();
       }
     });
   }
 
   checkIfUserFollowsThis(): boolean {
-    console.log('TEST');
     for (const follower of this.followers) {
       if (follower.id == this.currentUserId) {
-        console.log(follower);
         return true;
       }
     }

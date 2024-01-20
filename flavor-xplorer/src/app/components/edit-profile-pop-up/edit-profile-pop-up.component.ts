@@ -41,7 +41,7 @@ export class EditProfilePopUpComponent {
       this.updateUserProfile()
         .then(() => {
           // After updating profile, close the modal
-          this.activeModal.close();
+          this.activeModal.close('save');
         })
         .catch((error) => {
           console.error('Error updating profile', error);
