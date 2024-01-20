@@ -10,7 +10,7 @@ import { PostServiceComponent } from 'src/app/services/post-service/post-service
   styleUrls: ['./explore-page.component.css']
 })
 export class ExplorePageComponent implements OnInit{
-  postList : Post[];
+  postList : any;
 
   constructor(private postService : PostServiceComponent,
     private http: HttpClient

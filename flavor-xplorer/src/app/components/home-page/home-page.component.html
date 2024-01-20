@@ -22,8 +22,8 @@
   <div id="post-container">
    
     <div class="post-grid">
-        <div *ngFor="let post of postsFeed" [ngClass]="{'post': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) }" class="post">
-          <app-post [post]="post" [showDeleteButton] = false (save)="receivePostIdAndSaveToBookmarks($event)" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) "></app-post>
+        <div *ngFor="let post of postsFeed" [ngClass]="{'post': searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())}" class="post">
+          <app-post [post]="post" [showDeleteButton] = false (save)="receivePostIdAndSaveToBookmarks($event)" *ngIf="searchText === '' || post.title.toLowerCase().includes(searchText.toLowerCase()) || post.user.username.toLowerCase().includes(searchText.toLowerCase())"></app-post>
         </div>
     </div>
   </div>
