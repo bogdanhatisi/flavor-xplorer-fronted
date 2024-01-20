@@ -35,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditProfilePopUpComponent,
     ExplorePageComponent,
     BookmarkComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,
