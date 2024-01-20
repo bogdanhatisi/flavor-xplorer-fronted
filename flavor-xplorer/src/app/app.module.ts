@@ -22,7 +22,7 @@ import { ExplorePageComponent } from './components/explore-page/explore-page.com
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { EditProfilePopUpComponent } from './components/edit-profile-pop-up/edit-profile-pop-up.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
