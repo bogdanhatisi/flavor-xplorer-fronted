@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" (click)="openPostDetail()">
   <img
     *ngIf="post.images.length > 0; else placeholder"
     [src]="post.images[0]"

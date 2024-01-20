@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { PostComponent } from './components/post/post.component';
 import { ExplorePageComponent } from './components/explore-page/explore-page.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BookmarkComponent } from './components/bookmark/bookmark.component';
     PostComponent,
     ExplorePageComponent,
     BookmarkComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

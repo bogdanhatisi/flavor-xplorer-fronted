@@ -2,8 +2,11 @@
 
 import {EventEmitter, Output, Component, Input, OnInit } from '@angular/core';
 
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { PostServiceComponent } from '../../services/post-service/post-service.component';
 import { Post } from 'src/app/models/post.interface';
+import {PostDetailComponent} from "../post-detail/post-detail.component";
+
 
 @Component({
   selector: 'app-post',
@@ -17,9 +20,11 @@ export class PostComponent implements OnInit {
   @Output() save = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
 
-  constructor(private postService: PostServiceComponent) {}
+  constructor(private postService: PostServiceComponent, public dialog: MatDialog) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   savePost() {
     this.save.emit(this.post.id);
@@ -27,5 +32,14 @@ export class PostComponent implements OnInit {
 
   deletePost() {
     this.delete.emit(this.post.id)
+  }
+
+  openPostDetail() {
+    const dialogConfig = new MatDialogConfig();
+
+    this.dialog.open(PostDetailComponent, {
+      ...dialogConfig,
+      data: {post: this.post} // Pass the post data to the dialog component
+    });
   }
 }
